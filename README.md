@@ -373,9 +373,9 @@ vitest.config.ts    One unit-test runner for all packages.
       </a>
     </td>
     <td align="center" width="160">
-      <a href="" target="_blank" rel="noreferrer noopener">
-        <!-- <img src="assets/team/naveena" style="height:110px; border-radius:10%;"/><br/> -->
-        <b></b><br/>
+      <a href="https://www.linkedin.com/in/naveena-pillai" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/Naveena Pillai.jpg" style="height:110px; border-radius:10%;"/><br/> 
+        <b>Naveena Pillai</b><br/>
         <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
       </a>
     </td>
@@ -398,10 +398,9 @@ vitest.config.ts    One unit-test runner for all packages.
   </tr>
 </table>
 
-
 ## Points of Contact
 
-| Name          | Role      | Email                     |
-| ------------- | --------- | ------------------------- |
-| Patrick Hong  | Tech Lead | phong7@terpmail.umd.edu   |
-| Amanuel Abiy  | Tech Lead | aabiy@terpmail.umd.edu.   |
+| Name         | Role      | Email                   |
+| ------------ | --------- | ----------------------- |
+| Patrick Hong | Tech Lead | phong7@terpmail.umd.edu |
+| Amanuel Abiy | Tech Lead | aabiy@terpmail.umd.edu. |
