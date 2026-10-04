@@ -265,3 +265,143 @@ firebase.json       Emulators, Hosting rewrite, and function source.
 turbo.json          The build, typecheck, and lint tasks.
 vitest.config.ts    One unit-test runner for all packages.
 ```
+
+## Meet the Team
+
+### Product Managers
+
+<table align="center">
+  <tr>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/product_manager-007ACC?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/product_manager-007ACC?style=flat-square"/>
+      </a>
+    </td>
+  </tr>
+</table>
+
+### Tech Leads
+
+<table align="center">
+  <tr>
+    <td align="center" width="160">
+      <a href="https://www.linkedin.com/in/patrick-hong-773b36229" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/Patrick%20Hong.jpg" style="height:110px; border-radius:10%;"/><br/>
+        <b>Patrick Hong</b><br/>
+        <img src="https://img.shields.io/badge/technical_lead-FF5733?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/technical_lead-FF5733?style=flat-square"/>
+      </a>
+    </td>
+  </tr>
+</table>
+
+### Designers
+
+<table align="center">
+  <tr>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/designer-9B59B6?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/designer-9B59B6?style=flat-square"/>
+      </a>
+    </td>
+  </tr>
+</table>
+
+### Engineers
+
+<table align="center">
+  <tr>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+    <td align="center" width="160">
+      <a href="" target="_blank" rel="noreferrer noopener">
+        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
+        <b></b><br/>
+        <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+## Points of Contact
+
+| Name          | Role      | Email                     |
+| ------------- | --------- | ------------------------- |
+| Patrick Hong  | Tech Lead | phong7@terpmail.umd.edu   |
+| Amanuel Abiy  | Tech Lead | aabiy@terpmail.umd.edu.   |
