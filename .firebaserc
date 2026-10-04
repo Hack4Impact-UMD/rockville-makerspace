@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "demo-vtf-template"
-  }
+    "default": "rockville-makerspace"
+  },
+  "targets": {},
+  "etags": {}
 }
