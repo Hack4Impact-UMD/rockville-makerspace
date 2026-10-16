@@ -343,9 +343,9 @@ vitest.config.ts    One unit-test runner for all packages.
       </a>
     </td>
     <td align="center" width="160">
-      <a href="" target="_blank" rel="noreferrer noopener">
-        <!-- <img src="assets/team/amber" style="height:110px; border-radius:10%;"/><br/> -->
-        <b></b><br/>
+      <a href="https://www.linkedin.com/in/amberl18" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/Amber Li.png" style="height:110px; border-radius:10%;"/><br/>
+        <b>Amber Li</b><br/>
         <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
       </a>
     </td>
