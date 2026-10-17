@@ -7,6 +7,14 @@
         { "fieldPath": "uid", "order": "ASCENDING" },
         { "fieldPath": "createdAt", "order": "DESCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "people",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "personType", "order": "ASCENDING" },
+        { "fieldPath": "nameKey", "order": "ASCENDING" }
+      ]
     }
   ],
   "fieldOverrides": []

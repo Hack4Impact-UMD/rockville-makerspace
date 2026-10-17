@@ -1,5 +1,5 @@
 import { type } from "arktype";
-import { personKind } from "@common/person.ts";
+import { personType } from "@common/person.ts";
 
 /**
  * One check-in, kept permanently. All reporting (visitors and hours for any
@@ -12,7 +12,7 @@ export const visit = type({
   id: "string",
   personId: "string",
   /** Snapshot at check-in, since a non-member may later become a member. */
-  personKind,
+  personType,
   visitTypeId: "string",
   /** "search" is name and phone entry: every non-member, and members without their card. */
   checkInMethod: "'barcode' | 'search'",

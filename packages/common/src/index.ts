@@ -2,6 +2,7 @@ export * from "@common/address.ts";
 export * from "@common/admin.ts";
 export * from "@common/catalog.ts";
 export * from "@common/collections.ts";
+export * from "@common/lookup.ts";
 export * from "@common/myturn.ts";
 export * from "@common/person.ts";
 export * from "@common/schemas.ts";
