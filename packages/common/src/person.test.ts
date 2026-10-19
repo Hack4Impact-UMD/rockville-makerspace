@@ -30,7 +30,7 @@ const myTurnRow = {
 
 const nonMember = {
   id: "nm_+13015551234_jane-doe",
-  kind: "non-member",
+  personType: "non-member",
   firstName: "Jane",
   lastName: "Doe",
   nameKey: "jane doe",
@@ -48,7 +48,7 @@ const nonMember = {
 const member = {
   ...nonMember,
   id: "myturn_1042",
-  kind: "member",
+  personType: "member",
   phone: null,
   membership: {
     myturnId: "1042",
@@ -124,7 +124,7 @@ describe("visit", () => {
     const open = {
       id: "v1",
       personId: "myturn_1042",
-      personKind: "member",
+      personType: "member",
       visitTypeId: "member-hours",
       checkInMethod: "barcode",
       checkedInAt: 0,

@@ -1,10 +1,10 @@
 import { type } from "arktype";
 import { address } from "@common/address.ts";
 
-export const personKind = type("'member' | 'non-member'");
-export type PersonKind = typeof personKind.infer;
+export const personType = type("'member' | 'non-member'");
+export type PersonType = typeof personType.infer;
 
-/** Member-only fields. Present if and only if `kind` is "member". */
+/** Member-only fields. Present if and only if `personType` is "member". */
 export const membership = type({
   myturnId: "string",
   // TODO: source TBD -- the MyTurn Customer ID or an RMS-generated value.
@@ -27,7 +27,7 @@ export type Membership = typeof membership.infer;
  */
 export const person = type({
   id: "string",
-  kind: personKind,
+  personType,
   firstName: "string >= 1",
   lastName: "string >= 1",
   /** See `nameKey()`. */
@@ -48,16 +48,16 @@ export const person = type({
   createdAt: "number",
   updatedAt: "number",
 }).narrow((p, ctx) => {
-  if (p.kind === "member" && p.membership === null) {
+  if (p.personType === "member" && p.membership === null) {
     return ctx.reject({ path: ["membership"], expected: "set for a member" });
   }
-  if (p.kind === "non-member" && p.membership !== null) {
+  if (p.personType === "non-member" && p.membership !== null) {
     return ctx.reject({
       path: ["membership"],
       expected: "null for a non-member",
     });
   }
-  if (p.kind === "non-member" && p.phone === null) {
+  if (p.personType === "non-member" && p.phone === null) {
     return ctx.reject({ path: ["phone"], expected: "set for a non-member" });
   }
   return true;

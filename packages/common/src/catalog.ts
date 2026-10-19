@@ -1,12 +1,12 @@
 import { type } from "arktype";
-import { personKind } from "@common/person.ts";
+import { personType } from "@common/person.ts";
 
 /** What a person selects at the kiosk. Admins can add or change these. */
 export const visitType = type({
   id: "string",
   name: "string",
   /** Which kinds of people see this option at the kiosk. */
-  audiences: personKind.array(),
+  audiences: personType.array(),
   /** Volunteer hours carry grant-matching value. */
   countsAsVolunteerHours: "boolean",
   requiresWaiver: "boolean",
