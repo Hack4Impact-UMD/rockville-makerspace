@@ -301,9 +301,9 @@ vitest.config.ts    One unit-test runner for all packages.
       </a>
     </td>
     <td align="center" width="160">
-      <a href="" target="_blank" rel="noreferrer noopener">
-        <!-- <img src="assets/team/" style="height:110px; border-radius:10%;"/><br/> -->
-        <b></b><br/>
+      <a href="https://www.linkedin.com/in/amanuel-abiy" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/amanuel-abiy.png" style="height:110px; border-radius:10%;"/><br/> 
+        <b>Amanuel Abiy</b><br/>
         <img src="https://img.shields.io/badge/technical_lead-FF5733?style=flat-square"/>
       </a>
     </td>
@@ -343,9 +343,9 @@ vitest.config.ts    One unit-test runner for all packages.
       </a>
     </td>
     <td align="center" width="160">
-      <a href="https://www.linkedin.com/in/armaanivaturi" target="_blank" rel="noreferrer noopener">
-        <img src="assets/team/ArmaanIvaturi.png" style="height:110px; border-radius:10%;"/><br/>
-        <b>Armaan Ivaturi</b><br/>
+      <a href="https://www.linkedin.com/in/amberl18" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/Amber Li.png" style="height:110px; border-radius:10%;"/><br/>
+        <b>Amber Li</b><br/>
         <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
       </a>
     </td>
@@ -366,8 +366,8 @@ vitest.config.ts    One unit-test runner for all packages.
       </a>
     </td>
     <td align="center" width="160">
-      <a href="" target="_blank" rel="noreferrer noopener">
-        <!-- <img src="assets/team/armaan" style="height:110px; border-radius:10%;"/><br/> -->
+      <a href="https://www.linkedin.com/in/armaanivaturi" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/ArmaanIvaturi" style="height:110px; border-radius:10%;"/><br/> -->
         <b></b><br/>
         <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
       </a>
@@ -382,9 +382,9 @@ vitest.config.ts    One unit-test runner for all packages.
   </tr>
   <tr>
     <td align="center" width="160">
-      <a href="" target="_blank" rel="noreferrer noopener">
-        <!-- <img src="assets/team/nikolas" style="height:110px; border-radius:10%;"/><br/> -->
-        <b></b><br/>
+      <a href="https://www.linkedin.com/in/nikolas-posavec" target="_blank" rel="noreferrer noopener">
+        <img src="assets/team/nickposavec.jpg" style="height:110px; border-radius:10%;"/><br/>
+        <b>Nikolas Posavec</b><br/>
         <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
       </a>
     </td>
