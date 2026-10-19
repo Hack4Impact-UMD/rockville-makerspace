@@ -367,7 +367,7 @@ vitest.config.ts    One unit-test runner for all packages.
     </td>
     <td align="center" width="160">
       <a href="https://www.linkedin.com/in/armaanivaturi/" target="_blank" rel="noreferrer noopener">
-        <img src="assets/team/Armaan%20Ivaturi" style="height:110px; border-radius:10%;"/><br/>
+        <img src="assets/team/Armaan%20Ivaturi.png" style="height:110px; border-radius:10%;"/><br/>
         <b></b>Armaan Ivaturi<br/>
         <img src="https://img.shields.io/badge/engineer-27AE60?style=flat-square"/>
       </a>
