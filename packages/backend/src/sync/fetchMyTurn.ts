@@ -1,6 +1,7 @@
 import { getMyTurnConfig } from "@backend/myturn/config.ts";
 
-// TODO: this function assumes one bare array (figure out what API returns and adjust accordingly)
+// TODO: this assumes the API returns every member as one bare JSON array. The
+// real MyTurn API may paginate, wrap the array in an object, or export CSV.
 export async function fetchMyTurn(): Promise<unknown[]> {
   const config = getMyTurnConfig();
   const url = `${config.baseUrl}/members`;

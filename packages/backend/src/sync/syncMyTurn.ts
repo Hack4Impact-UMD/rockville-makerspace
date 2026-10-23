@@ -48,11 +48,17 @@ export async function syncRows(
       batch.set(ref, mapped, { merge: true });
       updated++;
     } else {
+      // TODO: a non-member who later joins already has an `nm_` doc (same phone
+      // and name), so this creates a second record for the same person and
+      // splits their visit history. Decide how to find and merge the two.
       batch.set(ref, checkedPerson);
       created++;
     }
   }
 
+  // TODO: members removed from MyTurn are never returned again, so their
+  // `myturn_` docs stay in `people` unchanged and still look like members.
+  // Decide whether to delete them, mark them inactive, or leave them.
   await batch.commit();
 
   return { created, updated, skipped };
