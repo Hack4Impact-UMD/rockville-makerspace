@@ -16,6 +16,7 @@
     "@repo/common": "workspace:*",
     "@trpc/server": "^11.18.0",
     "arktype": "^2.2.3",
+    "bwip-js": "^4.11.4",
     "express": "^5.2.1",
     "firebase-admin": "^14.3.0",
     "firebase-functions": "^7.3.2"
