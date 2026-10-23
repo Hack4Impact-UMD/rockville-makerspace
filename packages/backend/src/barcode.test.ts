@@ -2,10 +2,15 @@ import { describe, expect, it } from "vitest";
 import { generateBarcode } from "./barcode.ts";
 
 describe("generateBarcode", () => {
-  it("generates an 11-character barcode containing only uppercase letters and digits", () => {
+  it("generates an 11-character barcode", () => {
     const barcode = generateBarcode();
 
     expect(barcode).toHaveLength(11);
+  });
+
+  it("only contains uppercase letters and digits", () => {
+    const barcode = generateBarcode();
+
     expect(barcode).toMatch(/^[A-Z0-9]+$/);
   });
 
