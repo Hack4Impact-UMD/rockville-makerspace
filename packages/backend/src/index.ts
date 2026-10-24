@@ -12,3 +12,8 @@ setGlobalOptions({ region: "us-central1", maxInstances: 10 });
 export const api = onRequest(createApp());
 
 export type { AppRouter } from "@backend/routers/index.ts";
+
+export {
+  myTurnOpenHoursSync,
+  myTurnNightlySync,
+} from "@backend/sync/scheduledSync.ts";
