@@ -1,9 +1,5 @@
-
-// akhila TODO: address is null, api times out, other edge cases, testing
-// also i think the api might return multiple addressmatches so we probably have to check
-// all of them. they should all match each other if there are multiple
-
-const GEOCODER_URL = "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress";
+const GEOCODER_URL =
+  "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress";
 const TIMEOUT_MS = 5000;
 // Census GEOID for Rockville, MD (state 24 + place 67675). Matching on GEOID
 // instead of BASENAME avoids other Rockvilles (e.g. Rockville, IN)
@@ -35,7 +31,9 @@ The API takes in the address, benchmark, vintage, and format
 - format: we want JSON
 */
 
-export const isRockvilleResident = async (address: string): Promise<boolean | null> => {
+export const isRockvilleResident = async (
+  address: string,
+): Promise<boolean | null> => {
   const trimmed = address.trim();
 
   if (!trimmed) {
@@ -59,7 +57,7 @@ export const isRockvilleResident = async (address: string): Promise<boolean | nu
     const matches = data.result.addressMatches;
 
     if (matches.length === 0) {
-      return null
+      return null;
     }
 
     // the API can return multiple matches for one address. if they disagree
@@ -67,9 +65,7 @@ export const isRockvilleResident = async (address: string): Promise<boolean | nu
     const results = matches.map((match) => {
       const places = match.geographies["Incorporated Places"];
 
-      return places?.some(
-        (place) => place.GEOID === ROCKVILLE_GEOID
-      ) ?? false;
+      return places?.some((place) => place.GEOID === ROCKVILLE_GEOID) ?? false;
     });
 
     if (results.some((result) => result !== results[0])) {
@@ -77,8 +73,7 @@ export const isRockvilleResident = async (address: string): Promise<boolean | nu
     }
 
     return results[0] ?? null;
-
   } catch {
-    return null
+    return null;
   }
-}
+};
