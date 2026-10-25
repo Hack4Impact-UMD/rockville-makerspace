@@ -46,18 +46,33 @@ export const isRockvilleResident = async (address: string): Promise<boolean | nu
 
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
-    const data = (await res.json()) as GeocoderResponse;
-    const match = data.result.addressMatches[0];
 
-    if (!match) {
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = (await res.json()) as GeocoderResponse;
+    const matches = data.result.addressMatches;
+
+    if (matches.length === 0) {
       return null
     }
 
-    const places = match.geographies["Incorporated Places"];
+    // the API can return multiple matches for one address. if they disagree
+    // on whether the address is in Rockville, the result is ambiguous
+    const results = matches.map((match) => {
+      const places = match.geographies["Incorporated Places"];
 
-    return places?.some(
-      (place) => place.BASENAME === "Rockville"
-    ) ?? false;
+      return places?.some(
+        (place) => place.BASENAME === "Rockville"
+      ) ?? false;
+    });
+
+    if (results.some((result) => result !== results[0])) {
+      return null;
+    }
+
+    return results[0] ?? null;
 
   } catch {
     return null
