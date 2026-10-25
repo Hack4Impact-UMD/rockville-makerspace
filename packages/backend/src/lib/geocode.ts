@@ -4,6 +4,7 @@
 // all of them. they should all match each other if there are multiple
 
 const GEOCODER_URL = "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress";
+const TIMEOUT_MS = 5000;
 
 interface GeocoderResponse {
   result: {
@@ -44,7 +45,7 @@ export const isRockvilleResident = async (address: string): Promise<boolean | nu
   url.searchParams.set("format", "json");
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
     const data = (await res.json()) as GeocoderResponse;
     const match = data.result.addressMatches[0];
 
