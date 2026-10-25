@@ -5,6 +5,9 @@
 
 const GEOCODER_URL = "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress";
 const TIMEOUT_MS = 5000;
+// Census GEOID for Rockville, MD (state 24 + place 67675). Matching on GEOID
+// instead of BASENAME avoids other Rockvilles (e.g. Rockville, IN)
+const ROCKVILLE_GEOID = "2467675";
 
 interface GeocoderResponse {
   result: {
@@ -12,6 +15,7 @@ interface GeocoderResponse {
       geographies: {
         "Incorporated Places"?: {
           BASENAME: string;
+          GEOID: string;
         }[];
       };
     }[];
@@ -64,7 +68,7 @@ export const isRockvilleResident = async (address: string): Promise<boolean | nu
       const places = match.geographies["Incorporated Places"];
 
       return places?.some(
-        (place) => place.BASENAME === "Rockville"
+        (place) => place.GEOID === ROCKVILLE_GEOID
       ) ?? false;
     });
 
