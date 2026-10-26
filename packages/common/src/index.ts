@@ -8,3 +8,4 @@ export * from "@common/person.ts";
 export * from "@common/schemas.ts";
 export * from "@common/session.ts";
 export * from "@common/visit.ts";
+export * from "@common/phone.ts";
