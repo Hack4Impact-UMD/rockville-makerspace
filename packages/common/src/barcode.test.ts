@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { normalizeBarcode } from "./barcode.ts";
+import { normalizeBarcode } from "@common/barcode.ts";
 
 describe("normalizeBarcode", () => {
   it("trims spaces and uppercases the barcode", () => {
