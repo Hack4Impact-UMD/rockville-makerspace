@@ -404,36 +404,3 @@ vitest.config.ts    One unit-test runner for all packages.
 | ------------ | --------- | ----------------------- |
 | Patrick Hong | Tech Lead | phong7@terpmail.umd.edu |
 | Amanuel Abiy | Tech Lead | aabiy@terpmail.umd.edu. |
-
-## MyTurn scheduled sync
-
-`myTurnOpenHoursSync` runs every 15 minutes on Saturday, Sunday, Tuesday, and
-Thursday and checks opening hours before fetching or accessing Firestore.
-Saturday: noon–4 PM; Sunday: 2–4 PM; Tuesday/Thursday: 6–8 PM.
-Opening is inclusive; closing is exclusive. `myTurnNightlySync` runs a full
-sync daily at 3 AM. Both use `America/New_York` to follow daylight saving time.
-The opening-hours check uses the event's scheduled time for delayed deliveries.
-Both call `syncMyTurn()`, which logs `{ created, updated, skipped }`.
-Failures propagate to Firebase. Closed-hour invocations do no Firestore work.
-
-Deployment requires Blaze and the Cloud Scheduler API. These exports create
-two Scheduler jobs. Three jobs per billing account are free, shared across all
-projects; these jobs have no Scheduler charge only if that allowance remains
-available. Additional jobs cost $0.10/job/month. Functions, Firestore, and
-other services have separate quotas and charges, so zero total cost is not
-guaranteed. See [Firebase scheduling](https://firebase.google.com/docs/functions/schedule-functions)
-and [Scheduler pricing](https://cloud.google.com/scheduler/pricing).
-Production needs `MYTURN_BASE_URL` and `MYTURN_API_KEY`; emulators use the mock.
-
-Run `pnpm exec vitest run --project backend` for EST/EDT opening boundaries,
-HTTP mock success/authentication/`?fail=1`, and sync tests covering skipped
-malformed rows, zero creations on repeat, and RMS field preservation.
-Sync tests use an in-memory Firestore double. Before deployment, also run
-against an empty Firestore emulator (Java 21+): the first sync should create
-`mockMyTurnMembers(now).length - 1` documents and skip one, and the second
-should create zero. Edit labels, check-in state, visit ID, creation time,
-barcode, and certifications between runs and confirm they survive.
-Scheduled jobs do not automatically tick in the emulator; invoke the handlers
-explicitly for local schedule testing. Deploying is unnecessary for local tests.
-Firebase can redeliver events. `maxInstances: 1` and `concurrency: 1` limit each
-function independently; they do not prevent both jobs from overlapping.
