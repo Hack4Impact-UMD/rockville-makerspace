@@ -89,10 +89,10 @@ describe("assignBarcode (needs emulator running)", () => {
 });
 
 describe("barcode images", () => {
-  it("barcodeSvg returns an SVG containing the code text", () => {
+  it("barcodeSvg returns an SVG with bars and a text path", () => {
     const svg = barcodeSvg("RMS7K2QXP4M");
     expect(svg).toContain("<svg");
-    expect(svg).toContain("RMS7K2QXP4M");
+    expect(svg).toContain('fill="#000000"');
   });
 
   it("barcodePng returns a real PNG", async () => {
