@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as CheckedInRouteImport } from './routes/checked-in'
 import { Route as AuthenticatedNotesRouteImport } from './routes/_authenticated/notes'
 
 const IndexRoute = IndexRouteImport.update({
@@ -22,6 +23,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckedInRoute = CheckedInRouteImport.update({
+  id: '/checked-in',
+  path: '/checked-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedNotesRoute = AuthenticatedNotesRouteImport.update({
   id: '/notes',
   path: '/notes',
@@ -30,29 +36,38 @@ const AuthenticatedNotesRoute = AuthenticatedNotesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/checked-in': typeof CheckedInRoute
   '/notes': typeof AuthenticatedNotesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/checked-in': typeof CheckedInRoute
   '/notes': typeof AuthenticatedNotesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/checked-in': typeof CheckedInRoute
   '/_authenticated/notes': typeof AuthenticatedNotesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/notes'
+  fullPaths: '/' | '/checked-in' | '/notes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/notes'
-  id: '__root__' | '/' | '/_authenticated' | '/_authenticated/notes'
+  to: '/' | '/checked-in' | '/notes'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/checked-in'
+    | '/_authenticated/notes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  CheckedInRoute: typeof CheckedInRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -69,6 +84,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checked-in': {
+      id: '/checked-in'
+      path: '/checked-in'
+      fullPath: '/checked-in'
+      preLoaderRoute: typeof CheckedInRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/notes': {
@@ -95,6 +117,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  CheckedInRoute: CheckedInRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
