@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes } from "react";
 type Variant = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
 
-// TODO: fill these in with real styles (use colors from styles/tokens/colors.css, e.g. bg-dark-cyan hover:bg-light-cyan).
+// TODO: fill in styles, e.g. bg-dark-cyan hover:bg-light-cyan.
 const variantClasses: Record<Variant, string> = {
   primary: "",
   secondary: "",
@@ -20,7 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
 }
 
-/** Reusable button. Defaults to type="button" so it never submits a form by accident. */
+/** Reusable button; `type` defaults to "button". */
 export function Button({
   variant = "primary",
   size = "md",
@@ -30,7 +30,8 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      // oxlint-disable-next-line react/button-has-type -- defaults to "button" above
+      // oxlint-disable-next-line react/button-has-type
+      // oxlint-disable-next-line react/button-has-type
       type={type}
       className={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       {...props}

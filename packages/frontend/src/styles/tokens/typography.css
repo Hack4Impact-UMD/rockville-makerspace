@@ -1,8 +1,4 @@
-/*
- * Font tokens. --font-display → font-display, --font-body → font-body.
- * TODO: set the real fonts (load web fonts in index.html or via @font-face).
- */
+/* Fonts: --font-display gives font-display. TODO: set the real fonts. */
 @theme {
   /* --font-display: "Inter", sans-serif; */
-  /* --font-body: "Inter", sans-serif; */
 }

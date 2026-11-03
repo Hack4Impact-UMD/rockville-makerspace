@@ -1,4 +1,5 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import { Navbar } from "@frontend/components/layout/Navbar.tsx";
 import type { AuthState } from "@frontend/lib/useAuth.ts";
 
 interface RouterContext {
@@ -9,7 +10,12 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootLayout,
 });
 
-/** App-wide wrapper around every screen. Intentionally blank for now. */
+/** Wraps every screen. */
 function RootLayout() {
-  return <Outlet />;
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
 }

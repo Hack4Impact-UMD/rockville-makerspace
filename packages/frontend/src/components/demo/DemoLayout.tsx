@@ -5,11 +5,7 @@ import type { ReactNode } from "react";
 import { auth } from "@frontend/lib/firebase.ts";
 import { useAuth } from "@frontend/lib/useAuth.ts";
 
-/**
- * The template's old header (nav + sign out), now used only by the demo pages
- * (/demo and /notes) so the real app screens start from a blank page.
- * Delete this folder together with routes/demo.tsx and routes/_authenticated/.
- */
+/** Old template header, used only by /demo and /notes. Delete with the demo pages. */
 export function DemoLayout({ children }: { children: ReactNode }) {
   const { isAuthed } = useAuth();
   const router = useRouter();
