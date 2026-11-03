@@ -25,7 +25,7 @@ export function SignInForm() {
   });
 
   const field =
-    "min-w-40 flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700";
+    "min-w-40 flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm";
 
   return (
     <form

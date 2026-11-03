@@ -1,0 +1,18 @@
+/*
+ * Brand colors. The single place colors are defined: components use these
+ * names, never raw hex values. Tailwind v4 turns each --color-* variable into
+ * utilities: --color-dark-cyan → bg-dark-cyan, text-dark-cyan, border-dark-cyan, …
+ *
+ * To add or change a color, edit it here and every screen picks it up.
+ *
+ * Note: neon green has low contrast on white, so it's best for fills and
+ * highlights; use dark green for text on light backgrounds.
+ */
+@theme {
+  --color-dark-cyan: #206977;
+  --color-light-cyan: #128ea6;
+  --color-orange: #dd6214;
+  --color-dark-orange: #a94607;
+  --color-neon-green: #27d225;
+  --color-dark-green: #247523;
+}
