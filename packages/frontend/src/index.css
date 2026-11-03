@@ -1,17 +1,13 @@
 @import "tailwindcss";
 
-/* Design tokens (colors, fonts). Add new token files to styles/tokens/ and import them here. */
+/* Design tokens */
 @import "./styles/tokens/colors.css";
 @import "./styles/tokens/typography.css";
 
-/* Shared class recipes. */
+/* Shared class recipes */
 @import "./styles/components.css";
 
-/*
- * Light theme only. Tailwind's `dark:` classes would normally follow the
- * operating system's dark mode; this makes them apply only inside an element
- * with class="dark", which the app never adds, so they're switched off.
- */
+/* Light theme only: turns off Tailwind's dark: classes. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {

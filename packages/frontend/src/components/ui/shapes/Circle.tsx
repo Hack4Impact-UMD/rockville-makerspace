@@ -3,12 +3,12 @@ import type { ReactNode } from "react";
 interface CircleProps {
   /** Diameter in pixels. */
   size?: number;
-  /** Any Tailwind background class, e.g. "bg-dark-cyan" or "bg-orange". */
+  /** Tailwind background class, e.g. "bg-dark-cyan". */
   colorClass?: string;
   children?: ReactNode;
 }
 
-/** A circle with its children centred. TODO: real styling. */
+/** Circle with centred children. TODO: real styling. */
 export function Circle({ size = 48, colorClass = "", children }: CircleProps) {
   return (
     <div

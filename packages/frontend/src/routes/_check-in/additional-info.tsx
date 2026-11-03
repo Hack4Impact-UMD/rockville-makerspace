@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BackArrow } from "@frontend/components/ui/BackArrow.tsx";
 import { NextArrow } from "@frontend/components/ui/NextArrow.tsx";
 
 interface AdditionalInfoSearch {
@@ -8,6 +7,7 @@ interface AdditionalInfoSearch {
 }
 
 export const Route = createFileRoute("/_check-in/additional-info")({
+  staticData: { backTo: "/member-purpose" },
   validateSearch: (search: Record<string, unknown>): AdditionalInfoSearch => ({
     allFields:
       search.allFields === true || search.allFields === "true"
@@ -17,13 +17,12 @@ export const Route = createFileRoute("/_check-in/additional-info")({
   component: AdditionalInfo,
 });
 
-/** One screen, two modes: the base fields, or every field when `allFields` is set. */
+/** One screen, two modes: base fields, or all fields. */
 function AdditionalInfo() {
   const { allFields } = Route.useSearch();
 
   return (
     <>
-      <BackArrow to="/member-purpose" />
       <h1>Additional Info{allFields ? " (all fields)" : null}</h1>
       {/* TODO: base fields */}
       {allFields ? <p>{/* TODO: extra fields */}</p> : null}
