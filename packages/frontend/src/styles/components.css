@@ -1,0 +1,8 @@
+/*
+ * Optional shared class recipes, for styles reused across many components.
+ * Prefer Tailwind classes in the component itself; use this only when it
+ * genuinely removes repetition.
+ */
+@layer components {
+  /* .card { @apply rounded-card p-6; } */
+}
