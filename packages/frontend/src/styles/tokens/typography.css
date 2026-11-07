@@ -1,0 +1,5 @@
+/* Fonts: --font-sans is the default; --font-inter gives font-inter. Loaded in index.html. */
+@theme {
+  --font-sans: "Ubuntu", ui-sans-serif, system-ui, sans-serif;
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+}

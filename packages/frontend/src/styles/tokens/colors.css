@@ -1,0 +1,10 @@
+/* Brand colors: --color-dark-cyan gives bg-dark-cyan, text-dark-cyan, border-dark-cyan, … */
+@theme {
+  --color-dark-cyan: #206977;
+  --color-light-cyan: #128ea6;
+  --color-orange: #dd6214;
+  --color-dark-orange: #a94607;
+  /* Low contrast on white: use for fills, and dark green for text. */
+  --color-neon-green: #27d225;
+  --color-dark-green: #247523;
+}

@@ -1,13 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/checked-in")({ component: CheckedIn });
+export const Route = createFileRoute("/_check-in/checked-in")({
+  staticData: { backTo: "/additional-info" },
+  component: CheckedIn,
+});
 
 function CheckedIn() {
+  const navigate = useNavigate();
+
   return (
-    // TODO: temporary full-screen cover over the template layout in __root.tsx.
-    // pt-34 leaves room for the 96px navbar. Remove `fixed inset-0` once the
-    // navbar layout lands.
-    <div className="fixed inset-0 flex scheme-light flex-col justify-between gap-7 overflow-auto bg-white px-30 pt-34 pb-10 text-neutral-800">
+    <div className="flex min-h-dvh flex-col justify-between gap-7 px-30 py-10 text-neutral-800">
       <div className="flex max-w-[600px] flex-col gap-4">
         <div className="flex items-start gap-4">
           <h1 className="text-[40px] leading-tight font-bold">
@@ -53,12 +55,14 @@ function CheckedIn() {
         {/* TODO: replace with standardized buttons from task 10 */}
         <button
           type="button"
+          onClick={() => void navigate({ to: "/additional-info" })}
           className="cursor-pointer rounded-[10px] px-8 py-4 text-[28px] leading-[38px] font-medium text-cyan-600 outline-[1.5px] outline-offset-[-1.5px] outline-cyan-600 hover:bg-cyan-50"
         >
           Go back
         </button>
         <button
           type="button"
+          onClick={() => void navigate({ to: "/" })}
           className="cursor-pointer rounded-[10px] bg-green-500 px-8 py-4 text-[28px] leading-[38px] font-medium text-white hover:bg-green-600"
         >
           Check In someone else(10)
