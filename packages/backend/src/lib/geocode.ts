@@ -34,19 +34,19 @@ The API takes in the address, benchmark, vintage, and format
 export const isRockvilleResident = async (
   address: string,
 ): Promise<boolean | null> => {
-  const trimmed = address.trim();
-
-  if (!trimmed) {
-    return null;
-  }
-
-  const url = new URL(GEOCODER_URL);
-  url.searchParams.set("address", trimmed);
-  url.searchParams.set("benchmark", "Public_AR_Current");
-  url.searchParams.set("vintage", "Current_Current");
-  url.searchParams.set("format", "json");
-
   try {
+    const trimmed = address.trim();
+
+    if (!trimmed) {
+      return null;
+    }
+
+    const url = new URL(GEOCODER_URL);
+    url.searchParams.set("address", trimmed);
+    url.searchParams.set("benchmark", "Public_AR_Current");
+    url.searchParams.set("vintage", "Current_Current");
+    url.searchParams.set("format", "json");
+  
     const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
 
     if (!res.ok) {
