@@ -1,7 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import checkInBg from "@frontend/assets/images/backgrounds/check-in-bg.webp";
 
+// Same layers as the design: pattern at 90% opacity (the white layer), then a
+// 30% black overlay on top.
+const backgroundImage = `linear-gradient(rgb(0 0 0 / 0.3), rgb(0 0 0 / 0.3)), linear-gradient(rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1)), url(${checkInBg})`;
+
+// No back arrow in the navbar on this screen (design has data-back="false");
+// "Go back and fix check in" covers that instead.
 export const Route = createFileRoute("/_check-in/checked-in")({
-  staticData: { backTo: "/additional-info" },
   component: CheckedIn,
 });
 
@@ -9,46 +15,69 @@ function CheckedIn() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-dvh flex-col justify-between gap-7 px-30 py-10 text-neutral-800">
-      <div className="flex max-w-[600px] flex-col gap-4">
-        <div className="flex items-start gap-4">
-          <h1 className="text-[40px] leading-tight font-bold">
-            You’re all checked in, Priya!
-          </h1>
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="size-14 shrink-0 text-green-500"
+    <div
+      style={{ backgroundImage }}
+      className="flex min-h-dvh flex-col items-center justify-center gap-16 bg-cover bg-center px-28 py-10 text-white"
+    >
+      <div className="flex flex-col items-center gap-4 py-4 text-center">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-28"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="m7.5 12 3 3 6-6.5" />
+        </svg>
+
+        <h1 className="text-6xl leading-tight font-bold">
+          You’re all checked in, Priya!
+        </h1>
+
+        <div className="flex items-center gap-4">
+          <p className="text-3xl font-medium">Checked in at 6:42 PM</p>
+          {/* TODO: open the check-in time editor */}
+          <button
+            type="button"
+            className="flex cursor-pointer flex-col items-start text-xl"
           >
-            <circle cx="12" cy="12" r="10" />
-            <path d="m8 12 3 3 5-6" />
-          </svg>
+            <span aria-hidden="true" className="flex items-end">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-6"
+              >
+                <circle cx="12" cy="13" r="8" />
+                <path d="M12 9v4l2 2M5 3 2 6M22 6l-3-3" />
+              </svg>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mb-3 size-3.5"
+              >
+                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+              </svg>
+            </span>
+            Edit
+          </button>
         </div>
 
-        <p className="text-xl text-neutral-400">Checked in at 6:42 PM</p>
-
-        <div className="flex items-center justify-between border-b border-zinc-300 py-4">
-          <h2 className="text-[28px] font-medium text-neutral-500">
-            Membership
-          </h2>
-          {/* TODO: replace with standardized status pill from task 10 */}
-          <span className="rounded-full bg-green-500 px-4 py-2 text-xl text-white">
-            Active
-          </span>
-        </div>
-
-        <label className="font-inter mx-4 flex h-11 w-fit cursor-pointer items-center gap-3 px-3.5 text-[15px]">
-          <input
-            type="checkbox"
-            className="size-[18px] cursor-pointer appearance-none rounded-sm bg-stone-300 checked:bg-green-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
-          />
-          Seed Library
-        </label>
+        {/* TODO: replace with standardized status pill from task 10 */}
+        <span className="rounded-full bg-dark-green px-4 py-2 text-xl outline-1 -outline-offset-1 outline-neon-green">
+          Active Membership
+        </span>
       </div>
 
       <div className="flex gap-7">
@@ -56,16 +85,16 @@ function CheckedIn() {
         <button
           type="button"
           onClick={() => void navigate({ to: "/additional-info" })}
-          className="cursor-pointer rounded-[10px] px-8 py-4 text-[28px] leading-[38px] font-medium text-cyan-600 outline-[1.5px] outline-offset-[-1.5px] outline-cyan-600 hover:bg-cyan-50"
+          className="cursor-pointer rounded-[10px] bg-white px-8 py-4 text-3xl font-medium text-dark-cyan shadow-[0_4px_4px_rgba(0,0,0,0.25),0_4px_14px_rgba(0,0,0,0.25)] outline-[1.5px] -outline-offset-[1.5px] outline-dark-cyan hover:bg-cyan-50"
         >
-          Go back
+          Go back and fix check in
         </button>
         <button
           type="button"
           onClick={() => void navigate({ to: "/" })}
-          className="cursor-pointer rounded-[10px] bg-green-500 px-8 py-4 text-[28px] leading-[38px] font-medium text-white hover:bg-green-600"
+          className="cursor-pointer rounded-[10px] bg-dark-green px-8 py-4 text-3xl font-medium shadow-[0_4px_4px_rgba(0,0,0,0.25),0_4px_14px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-neon-green hover:brightness-110"
         >
-          Check In someone else(10)
+          Done! Let someone else check in (30)
         </button>
       </div>
     </div>
