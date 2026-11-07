@@ -10,7 +10,8 @@
     "build": "node scripts/build.mjs",
     "dev": "node scripts/build.mjs && concurrently --names bundle,emulators --prefix-colors blue,yellow \"node scripts/build.mjs --watch\" \"pnpm -w run emulators\"",
     "lint": "oxlint .",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "seed": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 tsx scripts/seed.ts"
   },
   "dependencies": {
     "@repo/common": "workspace:*",
@@ -26,6 +27,7 @@
     "concurrently": "^10.0.5",
     "esbuild": "^0.28.2",
     "oxlint": "^1.80.0",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }
 }
