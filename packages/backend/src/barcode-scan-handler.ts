@@ -1,9 +1,13 @@
-import { getFirestore } from "firebase-admin/firestore";
-import type { DocumentReference, Transaction } from "firebase-admin/firestore";
-import { COLLECTIONS } from "@repo/common";
-import type { Person } from "@repo/common";
+import type {
+  DocumentReference,
+  Firestore,
+  Transaction,
+} from "firebase-admin/firestore";
+import { COLLECTIONS, visit } from "@repo/common";
+import type { Person, ScanInput } from "@repo/common";
 
-type ScanInput = { barcode: string; visitTypeId?: string };
+//First entry of DEFAULT_VISIT_TYPES in catalog.ts
+const DEFAULT_VISIT_TYPE_ID = "member-hours";
 
 //Check if membership is active (never blocks check in)
 function isMembershipActive(person: Person, now: number) {
@@ -14,22 +18,33 @@ function isMembershipActive(person: Person, now: number) {
 
 //Create a visit and check the person in
 function checkIn(
+  db: Firestore,
   transaction: Transaction,
   personRef: DocumentReference,
   person: Person,
-  visitTypeId: string | null,
+  visitTypeId: string,
   membershipActive: boolean,
   now: number,
 ) {
-  const visitRef = getFirestore().collection(COLLECTIONS.visits).doc(); //new visit id
+  const visitRef = db.collection(COLLECTIONS.visits).doc(); //new visit id
 
-  transaction.set(visitRef, {
+  //Throws right away if the visit doesn't match the schema
+  const newVisit = visit.assert({
+    id: visitRef.id,
     personId: person.id,
+    personType: person.personType,
     visitTypeId: visitTypeId,
+    checkInMethod: "barcode",
     checkedInAt: now,
     checkedOutAt: null,
     durationMs: null,
+    endReason: null,
+    flags: [],
+    updatedAt: now,
+    updatedBy: null,
   });
+
+  transaction.set(visitRef, newVisit);
 
   transaction.update(personRef, {
     checkedIn: true,
@@ -49,6 +64,7 @@ function checkIn(
 
 //Close the open visit and check the person out
 async function checkOut(
+  db: Firestore,
   transaction: Transaction,
   personRef: DocumentReference,
   person: Person,
@@ -61,9 +77,7 @@ async function checkOut(
     );
 
   //Read the visit before any writes
-  const visitRef = getFirestore()
-    .collection(COLLECTIONS.visits)
-    .doc(person.currentVisitId);
+  const visitRef = db.collection(COLLECTIONS.visits).doc(person.currentVisitId);
   const visitData = await transaction.get(visitRef);
 
   if (!visitData.exists)
@@ -72,7 +86,12 @@ async function checkOut(
   const checkedInAt = visitData.get("checkedInAt") as number;
   const durationMs = now - checkedInAt;
 
-  transaction.update(visitRef, { checkedOutAt: now, durationMs: durationMs });
+  transaction.update(visitRef, {
+    checkedOutAt: now,
+    durationMs: durationMs,
+    endReason: "checkout",
+    updatedAt: now,
+  });
 
   transaction.update(personRef, {
     checkedIn: false,
@@ -90,9 +109,8 @@ async function checkOut(
   };
 }
 
-export function handleBarcodeScan(input: ScanInput) {
-  const db = getFirestore();
-  const barcode = input.barcode.trim().toUpperCase(); //ToDo: swap for normalizeBarcode()
+export function handleBarcodeScan(db: Firestore, input: ScanInput) {
+  const barcode = input.barcode.trim().toUpperCase(); //TODO: swap for normalizeBarcode() once barcode generation merges
 
   return db.runTransaction(async (transaction) => {
     //Find the member with this barcode
@@ -114,14 +132,15 @@ export function handleBarcodeScan(input: ScanInput) {
     //Check if they are not checked in yet
     if (!person.checkedIn)
       return checkIn(
+        db,
         transaction,
         personRef,
         person,
-        input.visitTypeId ?? null,
+        input.visitTypeId ?? DEFAULT_VISIT_TYPE_ID,
         membershipActive,
         now,
       );
 
-    return checkOut(transaction, personRef, person, membershipActive, now);
+    return checkOut(db, transaction, personRef, person, membershipActive, now);
   });
 }
