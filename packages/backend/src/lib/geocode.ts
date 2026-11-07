@@ -19,7 +19,7 @@ interface GeocoderResponse {
 }
 
 /*
-Checks whether a user’s address is inside Rockville city limits, 
+Checks whether a user’s address is inside Rockville city limits,
 using the US Census Geocoder API.
 This uses the city limits, not mailing city or ZIP code
 
@@ -46,7 +46,7 @@ export const isRockvilleResident = async (
     url.searchParams.set("benchmark", "Public_AR_Current");
     url.searchParams.set("vintage", "Current_Current");
     url.searchParams.set("format", "json");
-  
+
     const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
 
     if (!res.ok) {
