@@ -107,18 +107,21 @@ const FILLER_NON_MEMBERS: [string, string][] = [
  * - "José Muñoz", found by typing "jose"
  * - a member with no phone
  * - a non-member sharing a phone with a member
+ *
+ * Member IDs use 8xxx so they never collide with the mock MyTurn data
+ * (9001–9006, 10000+), which the sync writes to the same `people` docs.
  */
 export function fakePeople(now: number): Person[] {
   const edgeCases = [
-    member("9001", "Jane", "Doe", phone("01"), now),
+    member("8001", "Jane", "Doe", phone("01"), now),
     nonMember("Jane", "Doe", phone("02"), now),
-    member("9002", "Jan", "Park", phone("03"), now),
-    member("9003", "José", "Muñoz", phone("04"), now),
-    member("9004", "Tom", "Becker", null, now),
+    member("8002", "Jan", "Park", phone("03"), now),
+    member("8003", "José", "Muñoz", phone("04"), now),
+    member("8004", "Tom", "Becker", null, now),
     nonMember("Sam", "Lee", phone("03"), now),
   ];
   const members = FILLER_MEMBERS.map(([first, last], index) =>
-    member(String(9100 + index), first, last, phone(String(10 + index)), now),
+    member(String(8100 + index), first, last, phone(String(10 + index)), now),
   );
   const nonMembers = FILLER_NON_MEMBERS.map(([first, last], index) =>
     nonMember(first, last, phone(String(50 + index)), now),

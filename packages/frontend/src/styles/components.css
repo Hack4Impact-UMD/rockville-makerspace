@@ -1,0 +1,4 @@
+/* Optional shared class recipes; prefer Tailwind classes in components. */
+@layer components {
+  /* .card { @apply rounded-xl p-6; } */
+}
