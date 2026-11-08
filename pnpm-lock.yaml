@@ -94,6 +94,9 @@ importers:
 
   packages/frontend:
     dependencies:
+      '@fontsource/ubuntu':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@repo/common':
         specifier: workspace:*
         version: link:../common
@@ -718,6 +721,9 @@ packages:
 
   '@firebase/webchannel-wrapper@1.0.7':
     resolution: {integrity: sha512-phBFwieDLvkZGYN9CE9ZFNEIoBVksprzsnCzQejCmCHtgwCXReeuRpoEGN9C4EbhONztv8NRV1tau6Rb9pONwQ==}
+
+  '@fontsource/ubuntu@5.3.0':
+    resolution: {integrity: sha512-LsjJXgE430QLs8LKfn1RIFbbdGAiZBU1gao8ASa4Z2kGNGh7lMb7Rzx09v3bLLuuK+3XA/JSLgPWTAbLD6r1fg==}
 
   '@google-cloud/cloud-sql-connector@1.11.3':
     resolution: {integrity: sha512-dPnHkcabbH5LAksAQl99SJpC0HuG3YZwjcdcOxdz2QW58vOnGdfQ96d/Hpzl22h3eA03rKG0kMpEplC40xWtTQ==}
@@ -5384,6 +5390,8 @@ snapshots:
       tslib: 2.8.1
 
   '@firebase/webchannel-wrapper@1.0.7': {}
+
+  '@fontsource/ubuntu@5.3.0': {}
 
   '@google-cloud/cloud-sql-connector@1.11.3':
     dependencies:

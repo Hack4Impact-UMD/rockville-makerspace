@@ -1,4 +1,5 @@
 /* Fonts: --font-display gives font-display. TODO: set the real fonts. */
 @theme {
   /* --font-display: "Inter", sans-serif; */
+  --font-display: "Ubuntu", sans-serif;
 }
