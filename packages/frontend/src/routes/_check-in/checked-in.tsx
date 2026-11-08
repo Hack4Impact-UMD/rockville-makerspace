@@ -15,9 +15,10 @@ function CheckedIn() {
   const navigate = useNavigate();
 
   return (
+    // Fills the screen below the navbar, which is 96px (6rem) tall.
     <div
       style={{ backgroundImage }}
-      className="flex min-h-dvh flex-col items-center justify-center gap-16 bg-cover bg-center px-28 py-10 text-white"
+      className="flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center gap-16 bg-cover bg-center px-28 py-10 text-white"
     >
       <div className="flex flex-col items-center gap-4 py-4 text-center">
         <svg
