@@ -1,12 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import checkInBg from "@frontend/assets/images/backgrounds/check-in-bg.webp";
 
-// Same layers as the design: pattern at 90% opacity (the white layer), then a
-// 30% black overlay on top.
 const backgroundImage = `linear-gradient(rgb(0 0 0 / 0.3), rgb(0 0 0 / 0.3)), linear-gradient(rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1)), url(${checkInBg})`;
 
-// No back arrow in the navbar on this screen (design has data-back="false");
-// "Go back and fix check in" covers that instead.
 export const Route = createFileRoute("/_check-in/checked-in")({
   component: CheckedIn,
 });
@@ -15,7 +11,6 @@ function CheckedIn() {
   const navigate = useNavigate();
 
   return (
-    // Fills the screen below the navbar, which is 96px (6rem) tall.
     <div
       style={{ backgroundImage }}
       className="flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center gap-16 bg-cover bg-center px-28 py-10 text-white"
