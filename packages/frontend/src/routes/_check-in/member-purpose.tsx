@@ -13,9 +13,17 @@ export const Route = createFileRoute("/_check-in/member-purpose")({
 });
 
 const PURPOSES = [
-  { id: "volunteering", title: "Volunteering", icon: <img src={HandHeart} alt="" /> },
+  {
+    id: "volunteering",
+    title: "Volunteering",
+    icon: <img src={HandHeart} alt="" />,
+  },
   { id: "event", title: "Event", icon: <img src={Event} alt="" /> },
-  { id: "seed-library", title: "Seed library", icon: <img src={Tree} alt="" /> },
+  {
+    id: "seed-library",
+    title: "Seed library",
+    icon: <img src={Tree} alt="" />,
+  },
 ];
 
 function MemberPurpose() {
@@ -45,8 +53,8 @@ function MemberPurpose() {
           Why are you visiting today?
         </h1>
         <p className="mt-4 text-[22px]">
-          Tap to select one or more reasons why you're visiting. You can update
-          this later.
+          Tap to select one or more reasons why you&apos;re visiting. You can
+          update this later.
         </p>
         <div className="mt-6 grid max-w-[74%] grid-cols-2 gap-6">
           {PURPOSES.map(({ id, title, icon }) => (
