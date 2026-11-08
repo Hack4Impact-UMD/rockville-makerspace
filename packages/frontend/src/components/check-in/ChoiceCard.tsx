@@ -5,16 +5,12 @@ interface ChoiceCardProps extends Omit<
   "type" | "title"
 > {
   title: string;
-  /** Smaller line under the title. */
   description?: string;
-  /** Shown above the title. A gray placeholder is shown if omitted. */
   icon?: ReactNode;
   selected?: boolean;
-  /** Shows a checkbox in the top-right corner (for multi-select screens). */
   showCheckbox?: boolean;
 }
 
-/** Selectable card for kiosk choices; always a plain button. */
 export function ChoiceCard({
   title,
   description,
@@ -45,7 +41,7 @@ export function ChoiceCard({
       )}
 
       {icon ? (
-        <span className="flex h-10 w-10 items-center justify-center text-black">
+        <span className="flex h-10 w-10 items-center justify-center text-black [&>img]:h-full [&>img]:w-full [&>img]:object-contain">
           {icon}
         </span>
       ) : (
@@ -56,7 +52,7 @@ export function ChoiceCard({
       )}
 
       <span className="flex flex-col gap-1 ">
-        <span className="text-[24px] leading-tight font-medium text-[#0B7285]">
+        <span className="mt-2 text-[28px] leading-tight font-[600] text-[#0B7285]">
           {title}
         </span>
         {description ? (
