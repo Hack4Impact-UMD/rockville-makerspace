@@ -15,16 +15,35 @@ export const lookupRouter = router({
     .input(personSearchInput)
     .output(personSearchResult.array())
     .query(async ({ ctx, input }): Promise<PersonSearchResult[]> => {
-      const key = nameKey(input.query);
+     
+      const digits = input.query.replace(/\D/g, "");
 
-      if (key.length < 2) {
+      const isPhoneSearch =
+        digits.length === 10 ||
+        (digits.length === 11 && digits.startsWith("1"));
+
+      if (/^\d+$/.test(digits) && !isPhoneSearch) {
         return [];
       }
 
-      let query: Query = ctx.db
-        .collection(COLLECTIONS.people)
-        .where("nameKey", ">=", key)
-        .where("nameKey", "<", key + String.fromCharCode(0xf8ff));
+      let query: Query;
+
+      if (isPhoneSearch) {
+         const normalizedPhone = digits.length === 10 ? `+1${digits}` : `+${digits}`;
+        query = ctx.db
+          .collection(COLLECTIONS.people)
+          .where("phone", "==", normalizedPhone);
+      } else {
+         const key = nameKey(input.query);
+         if (key.length < 2) {
+            return [];
+          }
+          query = ctx.db
+            .collection(COLLECTIONS.people)
+            .where("nameKey", ">=", key)
+            .where("nameKey", "<", key + String.fromCharCode(0xf8ff));
+      }
+      
 
       if (input.personType) {
         query = query.where("personType", "==", input.personType);
