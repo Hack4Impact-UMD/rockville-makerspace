@@ -16,7 +16,8 @@ function MemberSearch() {
 
   const isPhoneSearch = digits.length === 10;
 
-  const isNameSearch = query.trim().length > 2 && !/^[\d\s-]+$/.test(query.trim());
+  const isNameSearch =
+    query.trim().length > 2 && !/^[\d\s-]+$/.test(query.trim());
 
   const shouldShowNoResults = isPhoneSearch || isNameSearch;
 
@@ -60,45 +61,49 @@ function MemberSearch() {
               />
             </div>
 
-           {search.data && search.data.length > 0 ? (
-                <div className="mt-3 w-full max-w-200 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-                  <div className="max-h-95 overflow-y-auto overflow-x-hidden">
-                    {search.data.map((person) => (
-                      <div
-                        key={person.id}
-                        className="flex w-full items-center justify-between border-b border-gray-200 px-4 py-2 last:border-b-0 hover:bg-gray-100"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200 text-[15px] font-medium text-gray-600">
-                            {person.fullName
-                              .split(" ")
-                              .map((name) => name[0])
-                              .join("")
-                              .slice(0, 2)
-                              .toUpperCase()}
-                          </div>
-
-                          <p className="text-[30px] font-semibold text-[#292929]">
-                            {person.fullName}
-                          </p>
+            {search.data && search.data.length > 0 ? (
+              <div className="mt-3 w-full max-w-200 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+                <div className="max-h-95 overflow-y-auto overflow-x-hidden">
+                  {search.data.map((person) => (
+                    <div
+                      key={person.id}
+                      className="flex w-full items-center justify-between border-b border-gray-200 px-4 py-2 last:border-b-0 hover:bg-gray-100"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200 text-[15px] font-medium text-gray-600">
+                          {person.fullName
+                            .split(" ")
+                            .map((name) => name[0])
+                            .join("")
+                            .slice(0, 2)
+                            .toUpperCase()}
                         </div>
 
-                        <p className="text-[20px] font-normal text-[#777777]">
-                          •••-•••-{person.phoneLast4}
+                        <p className="text-[30px] font-semibold text-[#292929]">
+                          {person.fullName}
                         </p>
                       </div>
-                    ))}
-                  </div>
+
+                      <p className="text-[20px] font-normal text-[#777777]">
+                        •••-•••-{person.phoneLast4}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ) : (
-                shouldShowNoResults &&
-                search.isFetched &&
-                !search.isFetching && (
-                  <div className="bg-red-100 border border-gray-200 max-w-200 w-full text-[20px] font-medium px-3 py-2.5 pr-3 rounded-xl">
-                    <p className="text-red-500">We couldn&apos;t find your membership. Please try another name or phone number. Our staff will be happy to help if you need a hand!</p>
-                  </div>
-                )
-              )}
+              </div>
+            ) : (
+              shouldShowNoResults &&
+              search.isFetched &&
+              !search.isFetching && (
+                <div className="bg-red-100 border border-gray-200 max-w-200 w-full text-[20px] font-medium px-3 py-2.5 pr-3 rounded-xl">
+                  <p className="text-red-500">
+                    We couldn&apos;t find your membership. Please try another
+                    name or phone number. Our staff will be happy to help if you
+                    need a hand!
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
