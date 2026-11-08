@@ -15,67 +15,70 @@ function MemberSearch() {
 
   const search = useQuery(
     trpc.lookup.search.queryOptions(
-      { query: query.trim(),
-        personType: "member",},
-      {enabled: query.trim().length >= 2,},
+      { query: query.trim(), personType: "member" },
+      { enabled: query.trim().length >= 2 },
     ),
   );
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Background/>
+        <Background />
       </div>
       <div className="relative z-10">
         <div className="pl-30">
-          <h1 className="text-white font-bold text-[40px] pt-10">Find your membership</h1>
+          <h1 className="text-white font-bold text-[40px] pt-10">
+            Find your membership
+          </h1>
           <div className="mt-7 flex flex-col gap-4">
-              <p className="text-white text-[20px]">Start typing your name or phone number. This is for members only.</p>
-              <div className="relative">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                  <SearchBar/>
-                </div>
-                <input
-                  className="w-200 border-1.5 border-2 border-b-black rounded-xl bg-white px-3 py-2.5 pl-10 pr-3 text-[30px] text-black font-medium shadow-lg outline-none placeholder:text-gray-500"
-                  type="text"
-                  placeholder="Enter person's name..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
+            <p className="text-white text-[20px]">
+              Start typing your name or phone number. This is for members only.
+            </p>
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                <SearchBar />
               </div>
+              <input
+                className="w-200 border-1.5 border-2 border-b-black rounded-xl bg-white px-3 py-2.5 pl-10 pr-3 text-[30px] text-black font-medium shadow-lg outline-none placeholder:text-gray-500"
+                type="text"
+                placeholder="Enter person's name..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </div>
 
-              {search.data && search.data.length > 0 && (
-                <div className="mt-3 w-full max-w-200 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-                  <div className="max-h-95 overflow-y-auto overflow-x-hidden">
-                    {search.data.map((person) => (
-                      <div
-                        key={person.id}
-                        className="flex w-full items-center justify-between border-b border-gray-200 px-4 py-2 last:border-b-0 hover:bg-gray-100"
-                      >
-                        {/* Initials + Name */}
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200 text-[15px] font-medium text-gray-600">
-                            {person.fullName
-                              .split(" ")
-                              .map((name) => name[0])
-                              .join("")
-                              .slice(0, 2)
-                              .toUpperCase()}
-                          </div>
-
-                          <p className="text-[30px] font-semibold text-[#292929]">
-                            {person.fullName}
-                          </p>
+            {search.data && search.data.length > 0 && (
+              <div className="mt-3 w-full max-w-200 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+                <div className="max-h-95 overflow-y-auto overflow-x-hidden">
+                  {search.data.map((person) => (
+                    <div
+                      key={person.id}
+                      className="flex w-full items-center justify-between border-b border-gray-200 px-4 py-2 last:border-b-0 hover:bg-gray-100"
+                    >
+                      {/* Initials + Name */}
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200 text-[15px] font-medium text-gray-600">
+                          {person.fullName
+                            .split(" ")
+                            .map((name) => name[0])
+                            .join("")
+                            .slice(0, 2)
+                            .toUpperCase()}
                         </div>
 
-                        <p className="text-[20px] font-normal text-[#777777]">
-                          •••-•••-{person.phoneLast4}
+                        <p className="text-[30px] font-semibold text-[#292929]">
+                          {person.fullName}
                         </p>
                       </div>
-                    ))}
-                  </div>
+
+                      <p className="text-[20px] font-normal text-[#777777]">
+                        •••-•••-{person.phoneLast4}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
