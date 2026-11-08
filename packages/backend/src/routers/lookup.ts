@@ -1,4 +1,10 @@
-import { COLLECTIONS, nameKey, personSearchInput, personSearchResult, phoneLast4 } from "@repo/common";
+import {
+  COLLECTIONS,
+  nameKey,
+  personSearchInput,
+  personSearchResult,
+  phoneLast4,
+} from "@repo/common";
 import type { PersonSearchResult } from "@repo/common";
 import { publicProcedure, router } from "@backend/trpc/init.ts";
 import type { Query } from "firebase-admin/firestore";
@@ -10,7 +16,7 @@ export const lookupRouter = router({
     .output(personSearchResult.array())
     .query(async ({ ctx, input }): Promise<PersonSearchResult[]> => {
       const key = nameKey(input.query);
-      
+
       if (key.length < 2) {
         return [];
       }
@@ -27,14 +33,13 @@ export const lookupRouter = router({
       const snapshot = await query.limit(10).get();
 
       return snapshot.docs.map((doc): PersonSearchResult => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            personType: data.personType,
-            fullName: `${data.firstName ?? ""} ${data.lastName ?? ""}`.trim(),
-            phoneLast4: phoneLast4(data.phone ?? null),
-          };
-        })
-        
+        const data = doc.data();
+        return {
+          id: doc.id,
+          personType: data.personType,
+          fullName: `${data.firstName ?? ""} ${data.lastName ?? ""}`.trim(),
+          phoneLast4: phoneLast4(data.phone ?? null),
+        };
+      });
     }),
 });

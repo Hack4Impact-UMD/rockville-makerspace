@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { NextArrow } from "@frontend/components/ui/NextArrow.tsx";
-import { trpc } from "@frontend/lib/trpc";
+import { trpc } from "@frontend/lib/trpc.ts";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Background } from "@frontend/assets/images/backgrounds/RockvilleBackground";
-import { SearchBar } from "@frontend/assets/icons/SearchBar";
+import { Background } from "@frontend/assets/images/backgrounds/RockvilleBackground.tsx";
+import { SearchBar } from "@frontend/assets/icons/SearchBar.tsx";
 
 export const Route = createFileRoute("/_check-in/member-search")({
   staticData: { backTo: "/" },

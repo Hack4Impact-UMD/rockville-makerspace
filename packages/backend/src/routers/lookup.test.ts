@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createCaller } from "@backend/routers/index.ts";
-import type { Context } from "@backend/trpc/context";
+import type { Context } from "@backend/trpc/context.ts";
 import type { Firestore } from "firebase-admin/firestore";
 
 function caller(session: Context["session"], db: Firestore) {
@@ -26,18 +26,18 @@ describe("lookupRouter", () => {
     });
 
     it("queries Firestore without personType filter when personType is omitted", async () => {
-        const recordedCalls: { name: string; args: any[] }[] = [];
+        const recordedCalls: { name: string; args: unknown[] }[] = [];
 
         const mockQuery = {
-            where(...args: any[]) {
+            where(...args: unknown[]) {
                 recordedCalls.push({ name: "where", args });
                 return this;
             },
-            limit(...args: any[]) {
+            limit(...args: unknown[]) {
                 recordedCalls.push({ name: "limit", args });
                 return this;
             },
-            async get() {
+            get() {
                 recordedCalls.push({ name: "get", args: [] });
                 return { docs: [] };
             },
@@ -65,18 +65,18 @@ describe("lookupRouter", () => {
     });
 
     it("queries Firestore and maps results correctly when personType is provided", async () => {
-        const recordedCalls: { name: string; args: any[] }[] = [];
+        const recordedCalls: { name: string; args: unknown[] }[] = [];
 
         const mockQuery = {
-            where(...args: any[]) {
+            where(...args: unknown[]) {
                 recordedCalls.push({ name: "where", args });
                 return this;
             },
-            limit(...args: any[]) {
+            limit(...args: unknown[]) {
                 recordedCalls.push({ name: "limit", args });
                 return this;
             },
-            async get() {
+            get() {
                 recordedCalls.push({ name: "get", args: [] });
                 return {
                 docs: [
