@@ -5,7 +5,7 @@ type Size = "sm" | "md" | "lg";
 
 // Colors from the Figma "Button" component (Primary / Secondary).
 const baseClasses =
-  "inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-[10px] font-ubuntu font-medium shadow-raised";
+  "inline-flex cursor-pointer items-center justify-center rounded-[10px] text-center font-ubuntu font-medium shadow-raised";
 
 const variantClasses: Record<Variant, string> = {
   primary:
@@ -17,7 +17,7 @@ const variantClasses: Record<Variant, string> = {
 const sizeClasses: Record<Size, string> = {
   sm: "",
   md: "",
-  lg: "px-8 py-[18px] text-[28px]",
+  lg: "px-6 py-4 text-xl sm:px-8 sm:py-[18px] sm:text-[28px] sm:whitespace-nowrap",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

@@ -45,33 +45,34 @@ export function ExpiredMembership({
   }, []);
 
   return (
-    // The message and the buttons share one grid cell so the message stays
-    // centered on the whole screen while the buttons sit at the bottom.
     <div
-      className="grid min-h-dvh bg-teal bg-cover bg-center px-[120px] py-10 font-ubuntu leading-[normal]"
+      className="flex min-h-dvh flex-col gap-10 bg-teal bg-cover bg-center px-4 py-10 font-ubuntu leading-[normal] sm:px-10"
       style={{ backgroundImage: `url(${patternBg})` }}
     >
-      <div className="flex flex-col items-center gap-[18px] self-center [grid-area:1/1]">
+      <div className="flex flex-1 flex-col items-center justify-center gap-[18px] text-center">
         <img src={noEntryIcon} alt="" width={56} height={56} />
-        <h1 className="text-[40px] font-bold text-white">WAIT, {firstName}!</h1>
+        <h1 className="text-3xl font-bold break-words text-white sm:text-[40px]">
+          WAIT, {firstName}!
+        </h1>
         <Pill colorClass="border-[1.5px] border-warning bg-warning-bg text-warning shadow-raised">
           Inactive membership
         </Pill>
         <p
           role="alert"
-          className="w-[603px] max-w-full rounded-[10px] bg-warning-bg px-5 py-4 text-xl text-warning"
+          className="w-[603px] max-w-full rounded-[10px] bg-warning-bg px-5 py-4 text-left text-lg text-warning sm:text-xl"
         >
           Looks like your membership has lapsed. Please see the staff to help
           you renew before checking in.
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-7 self-end [grid-area:1/1]">
+      {/* Stacked at equal widths on narrow screens, side by side from lg up. */}
+      <div className="flex flex-col gap-4 sm:mx-auto sm:w-fit lg:w-auto lg:flex-row lg:justify-center lg:gap-6">
         <Button variant="secondary" size="lg" onClick={onGoBack}>
           Go back and fix check in
         </Button>
         <Button variant="primary" size="lg" onClick={onCheckInSomeoneElse}>
-          Done! Let someone else check in({secondsLeft})
+          Done! Let someone else check in ({secondsLeft})
         </Button>
       </div>
     </div>
