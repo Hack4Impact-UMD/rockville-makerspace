@@ -18,7 +18,10 @@ const PURPOSES = [
     title: "Volunteering",
     icon: <img src={HandHeart} alt="" />,
   },
-  { id: "event", title: "Event", icon: <img src={Event} alt="" /> },
+  { 
+    id: "event", 
+    title: "Event",
+    icon: <img src={Event} alt="" /> },
   {
     id: "seed-library",
     title: "Seed library",
@@ -29,13 +32,6 @@ const PURPOSES = [
 function MemberPurpose() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>([]);
-
-  // const toggle = (purpose: string) =>
-  //   setSelected((prev) =>
-  //     prev.includes(purpose)
-  //       ? prev.filter((p) => p !== purpose)
-  //       : [...prev, purpose],
-  //   );
 
   const toggle = (id: string) =>
     setSelected((prev) =>
@@ -75,7 +71,7 @@ function MemberPurpose() {
             size="lg"
             disabled={selected.length === 0}
             onClick={() => navigate({ to: "/additional-info" })}
-            className="cursor-pointer rounded-md bg-[#0B7285] px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
+            className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
           >
             Continue
           </Button>
