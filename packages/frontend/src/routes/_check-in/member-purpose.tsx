@@ -18,10 +18,11 @@ const PURPOSES = [
     title: "Volunteering",
     icon: <img src={HandHeart} alt="" />,
   },
-  { 
-    id: "event", 
+  {
+    id: "event",
     title: "Event",
-    icon: <img src={Event} alt="" /> },
+    icon: <img src={Event} alt="" />,
+  },
   {
     id: "seed-library",
     title: "Seed library",

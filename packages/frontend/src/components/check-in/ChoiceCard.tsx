@@ -28,17 +28,17 @@ export function ChoiceCard({
       aria-pressed={selected}
       className={`relative flex min-h-[130px] cursor-pointer flex-col items-start justify-center gap-2 rounded-[14px] border-2 border-transparent bg-[#F8FEFF] px-8 py-6 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600 disabled:cursor-not-allowed disabled:opacity-50 ${
         selected
-            ? "shadow-[0_0_0_8px_var(--color-neon-green),0_4px_4px_6px_rgba(0,0,0,0.25)]"
-            : "shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
-        } ${className}`}
+          ? "shadow-[0_0_0_8px_var(--color-neon-green),0_4px_4px_6px_rgba(0,0,0,0.25)]"
+          : "shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+      } ${className}`}
       {...props}
     >
       {showCheckbox && (
         <img
-            src={selected ? checkboxYes : checkboxNo}
-            alt=""
-            aria-hidden="true"
-            className="absolute top-7 right-7 h-5 w-5"
+          src={selected ? checkboxYes : checkboxNo}
+          alt=""
+          aria-hidden="true"
+          className="absolute top-7 right-7 h-5 w-5"
         />
       )}
 
