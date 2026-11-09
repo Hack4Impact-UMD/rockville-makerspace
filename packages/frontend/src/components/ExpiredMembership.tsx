@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { TempButton } from "@frontend/components/TempButton.tsx";
-import { TempStatusPill } from "@frontend/components/TempStatusPill.tsx";
+import { Button } from "@frontend/components/ui/Button.tsx";
+import { Pill } from "@frontend/components/ui/shapes/Pill.tsx";
+
+// The shared Button and Pill have no styles yet, so this screen supplies its own.
+const buttonBase =
+  "h-12 cursor-pointer rounded-[5px] border-[1.5px] px-6 text-xl font-medium";
 
 /** Seconds before the screen moves on to the next check-in by itself. */
 export const AUTO_RETURN_SECONDS = 10;
@@ -68,18 +72,26 @@ export function ExpiredMembership({
 
       <div className="mt-[26px] flex items-center justify-between border-b border-[#ddd] pb-[13px]">
         <span className="text-xl font-medium text-[#666]">Membership</span>
-        {/* TEMPORARY: swap for the task 10 status pill. */}
-        <TempStatusPill>Inactive</TempStatusPill>
+        <Pill colorClass="h-[30px] border border-light-cyan text-sm text-light-cyan">
+          Inactive
+        </Pill>
       </div>
 
       <div className="mt-24 flex flex-wrap gap-5">
-        {/* TEMPORARY: swap both buttons for the task 10 Button. */}
-        <TempButton variant="outline" onClick={onGoBack}>
+        <Button
+          variant="secondary"
+          className={`${buttonBase} border-light-cyan bg-white text-light-cyan hover:bg-[#f2fafc]`}
+          onClick={onGoBack}
+        >
           Go back
-        </TempButton>
-        <TempButton variant="primary" onClick={onCheckInSomeoneElse}>
+        </Button>
+        <Button
+          variant="primary"
+          className={`${buttonBase} border-light-cyan bg-light-cyan text-white hover:bg-dark-cyan`}
+          onClick={onCheckInSomeoneElse}
+        >
           Check In someone else({secondsLeft})
-        </TempButton>
+        </Button>
       </div>
     </div>
   );

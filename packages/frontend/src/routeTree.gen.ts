@@ -20,7 +20,6 @@ import { Route as CheckInAdditionalInfoRouteImport } from './routes/_check-in/ad
 import { Route as CheckInCheckedInRouteImport } from './routes/_check-in/checked-in'
 import { Route as CheckInMemberPurposeRouteImport } from './routes/_check-in/member-purpose'
 import { Route as CheckInMemberSearchRouteImport } from './routes/_check-in/member-search'
-import { Route as CheckinExpiredRouteImport } from './routes/checkin/expired'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -75,11 +74,6 @@ const CheckInMemberSearchRoute = CheckInMemberSearchRouteImport.update({
   path: '/member-search',
   getParentRoute: () => CheckInRouteRoute,
 } as any)
-const CheckinExpiredRoute = CheckinExpiredRouteImport.update({
-  id: '/checkin/expired',
-  path: '/checkin/expired',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -91,7 +85,6 @@ export interface FileRoutesByFullPath {
   '/checked-in': typeof CheckInCheckedInRoute
   '/member-purpose': typeof CheckInMemberPurposeRoute
   '/member-search': typeof CheckInMemberSearchRoute
-  '/checkin/expired': typeof CheckinExpiredRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -103,7 +96,6 @@ export interface FileRoutesByTo {
   '/checked-in': typeof CheckInCheckedInRoute
   '/member-purpose': typeof CheckInMemberPurposeRoute
   '/member-search': typeof CheckInMemberSearchRoute
-  '/checkin/expired': typeof CheckinExpiredRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -118,7 +110,6 @@ export interface FileRoutesById {
   '/_check-in/checked-in': typeof CheckInCheckedInRoute
   '/_check-in/member-purpose': typeof CheckInMemberPurposeRoute
   '/_check-in/member-search': typeof CheckInMemberSearchRoute
-  '/checkin/expired': typeof CheckinExpiredRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,7 +123,6 @@ export interface FileRouteTypes {
     | '/checked-in'
     | '/member-purpose'
     | '/member-search'
-    | '/checkin/expired'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,7 +134,6 @@ export interface FileRouteTypes {
     | '/checked-in'
     | '/member-purpose'
     | '/member-search'
-    | '/checkin/expired'
   id:
     | '__root__'
     | '/'
@@ -158,7 +147,6 @@ export interface FileRouteTypes {
     | '/_check-in/checked-in'
     | '/_check-in/member-purpose'
     | '/_check-in/member-search'
-    | '/checkin/expired'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -168,7 +156,6 @@ export interface RootRouteChildren {
   DemoRoute: typeof DemoRoute
   MembershipExpiredRoute: typeof MembershipExpiredRoute
   WaiverNeededRoute: typeof WaiverNeededRoute
-  CheckinExpiredRoute: typeof CheckinExpiredRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -250,13 +237,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckInMemberSearchRouteImport
       parentRoute: typeof CheckInRouteRoute
     }
-    '/checkin/expired': {
-      id: '/checkin/expired'
-      path: '/checkin/expired'
-      fullPath: '/checkin/expired'
-      preLoaderRoute: typeof CheckinExpiredRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -296,7 +276,6 @@ const rootRouteChildren: RootRouteChildren = {
   DemoRoute: DemoRoute,
   MembershipExpiredRoute: MembershipExpiredRoute,
   WaiverNeededRoute: WaiverNeededRoute,
-  CheckinExpiredRoute: CheckinExpiredRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
