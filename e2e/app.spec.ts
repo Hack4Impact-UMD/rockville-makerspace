@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { TEST_USER } from "@e2e/emulator.ts";
 
 test("signs in, then navigates to a protected route", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/demo");
 
   // Public procedure: no token needed.
   await expect(page.getByTestId("hello")).toHaveText("Hello, world!");
@@ -10,8 +10,8 @@ test("signs in, then navigates to a protected route", async ({ page }) => {
   // Protected procedure: the auth middleware rejects an anonymous caller.
   await expect(page.getByTestId("me-error")).toContainText("UNAUTHORIZED");
 
-  await page.getByRole("link", { name: "Home" }).click();
-  await expect(page).toHaveURL(/\/$/);
+  await page.getByRole("link", { name: "Demo" }).click();
+  await expect(page).toHaveURL(/\/demo$/);
 
   await page.getByTestId("email").fill(TEST_USER.email);
   await page.getByTestId("password").fill(TEST_USER.password);

@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { DemoLayout } from "@frontend/components/demo/DemoLayout.tsx";
 import { Section } from "@frontend/components/Section.tsx";
 import { useAuth } from "@frontend/lib/useAuth.ts";
 import { trpc } from "@frontend/lib/trpc.ts";
@@ -11,6 +12,14 @@ export const Route = createFileRoute("/_authenticated/notes")({
 
 /** Protected procedures backed by Firestore, scoped to the signed-in user. */
 function Notes() {
+  return (
+    <DemoLayout>
+      <NotesContent />
+    </DemoLayout>
+  );
+}
+
+function NotesContent() {
   const { user } = useAuth();
   const [text, setText] = useState("");
   const queryClient = useQueryClient();
@@ -54,7 +63,7 @@ function Notes() {
           aria-label="Note"
           placeholder="Write a note"
           onChange={(event) => setText(event.target.value)}
-          className="min-w-40 flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700"
+          className="min-w-40 flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm"
         />
         <button
           type="submit"
@@ -68,7 +77,7 @@ function Notes() {
 
       <ul
         data-testid="notes"
-        className="mt-4 list-disc space-y-1 pl-5 text-sm text-slate-500 dark:text-slate-400"
+        className="mt-4 list-disc space-y-1 pl-5 text-sm text-slate-500"
       >
         {notes.data?.map((note) => (
           <li key={note.id}>{note.text}</li>

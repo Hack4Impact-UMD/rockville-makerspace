@@ -11,7 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as CheckInRouteRouteImport } from './routes/_check-in/route'
+import { Route as DemoRouteImport } from './routes/demo'
+import { Route as MembershipExpiredRouteImport } from './routes/membership-expired'
+import { Route as WaiverNeededRouteImport } from './routes/waiver-needed'
 import { Route as AuthenticatedNotesRouteImport } from './routes/_authenticated/notes'
+import { Route as CheckInAdditionalInfoRouteImport } from './routes/_check-in/additional-info'
+import { Route as CheckInCheckedInRouteImport } from './routes/_check-in/checked-in'
+import { Route as CheckInMemberPurposeRouteImport } from './routes/_check-in/member-purpose'
+import { Route as CheckInMemberSearchRouteImport } from './routes/_check-in/member-search'
 import { Route as CheckinExpiredRouteImport } from './routes/checkin/expired'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,10 +31,49 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckInRouteRoute = CheckInRouteRouteImport.update({
+  id: '/_check-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipExpiredRoute = MembershipExpiredRouteImport.update({
+  id: '/membership-expired',
+  path: '/membership-expired',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaiverNeededRoute = WaiverNeededRouteImport.update({
+  id: '/waiver-needed',
+  path: '/waiver-needed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedNotesRoute = AuthenticatedNotesRouteImport.update({
   id: '/notes',
   path: '/notes',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const CheckInAdditionalInfoRoute = CheckInAdditionalInfoRouteImport.update({
+  id: '/additional-info',
+  path: '/additional-info',
+  getParentRoute: () => CheckInRouteRoute,
+} as any)
+const CheckInCheckedInRoute = CheckInCheckedInRouteImport.update({
+  id: '/checked-in',
+  path: '/checked-in',
+  getParentRoute: () => CheckInRouteRoute,
+} as any)
+const CheckInMemberPurposeRoute = CheckInMemberPurposeRouteImport.update({
+  id: '/member-purpose',
+  path: '/member-purpose',
+  getParentRoute: () => CheckInRouteRoute,
+} as any)
+const CheckInMemberSearchRoute = CheckInMemberSearchRouteImport.update({
+  id: '/member-search',
+  path: '/member-search',
+  getParentRoute: () => CheckInRouteRoute,
 } as any)
 const CheckinExpiredRoute = CheckinExpiredRouteImport.update({
   id: '/checkin/expired',
@@ -36,37 +83,91 @@ const CheckinExpiredRoute = CheckinExpiredRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
+  '/membership-expired': typeof MembershipExpiredRoute
+  '/waiver-needed': typeof WaiverNeededRoute
   '/notes': typeof AuthenticatedNotesRoute
+  '/additional-info': typeof CheckInAdditionalInfoRoute
+  '/checked-in': typeof CheckInCheckedInRoute
+  '/member-purpose': typeof CheckInMemberPurposeRoute
+  '/member-search': typeof CheckInMemberSearchRoute
   '/checkin/expired': typeof CheckinExpiredRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
+  '/membership-expired': typeof MembershipExpiredRoute
+  '/waiver-needed': typeof WaiverNeededRoute
   '/notes': typeof AuthenticatedNotesRoute
+  '/additional-info': typeof CheckInAdditionalInfoRoute
+  '/checked-in': typeof CheckInCheckedInRoute
+  '/member-purpose': typeof CheckInMemberPurposeRoute
+  '/member-search': typeof CheckInMemberSearchRoute
   '/checkin/expired': typeof CheckinExpiredRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_check-in': typeof CheckInRouteRouteWithChildren
+  '/demo': typeof DemoRoute
+  '/membership-expired': typeof MembershipExpiredRoute
+  '/waiver-needed': typeof WaiverNeededRoute
   '/_authenticated/notes': typeof AuthenticatedNotesRoute
+  '/_check-in/additional-info': typeof CheckInAdditionalInfoRoute
+  '/_check-in/checked-in': typeof CheckInCheckedInRoute
+  '/_check-in/member-purpose': typeof CheckInMemberPurposeRoute
+  '/_check-in/member-search': typeof CheckInMemberSearchRoute
   '/checkin/expired': typeof CheckinExpiredRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/notes' | '/checkin/expired'
+  fullPaths:
+    | '/'
+    | '/demo'
+    | '/membership-expired'
+    | '/waiver-needed'
+    | '/notes'
+    | '/additional-info'
+    | '/checked-in'
+    | '/member-purpose'
+    | '/member-search'
+    | '/checkin/expired'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/notes' | '/checkin/expired'
+  to:
+    | '/'
+    | '/demo'
+    | '/membership-expired'
+    | '/waiver-needed'
+    | '/notes'
+    | '/additional-info'
+    | '/checked-in'
+    | '/member-purpose'
+    | '/member-search'
+    | '/checkin/expired'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/_check-in'
+    | '/demo'
+    | '/membership-expired'
+    | '/waiver-needed'
     | '/_authenticated/notes'
+    | '/_check-in/additional-info'
+    | '/_check-in/checked-in'
+    | '/_check-in/member-purpose'
+    | '/_check-in/member-search'
     | '/checkin/expired'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  CheckInRouteRoute: typeof CheckInRouteRouteWithChildren
+  DemoRoute: typeof DemoRoute
+  MembershipExpiredRoute: typeof MembershipExpiredRoute
+  WaiverNeededRoute: typeof WaiverNeededRoute
   CheckinExpiredRoute: typeof CheckinExpiredRoute
 }
 
@@ -86,12 +187,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_check-in': {
+      id: '/_check-in'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof CheckInRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership-expired': {
+      id: '/membership-expired'
+      path: '/membership-expired'
+      fullPath: '/membership-expired'
+      preLoaderRoute: typeof MembershipExpiredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waiver-needed': {
+      id: '/waiver-needed'
+      path: '/waiver-needed'
+      fullPath: '/waiver-needed'
+      preLoaderRoute: typeof WaiverNeededRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/notes': {
       id: '/_authenticated/notes'
       path: '/notes'
       fullPath: '/notes'
       preLoaderRoute: typeof AuthenticatedNotesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_check-in/additional-info': {
+      id: '/_check-in/additional-info'
+      path: '/additional-info'
+      fullPath: '/additional-info'
+      preLoaderRoute: typeof CheckInAdditionalInfoRouteImport
+      parentRoute: typeof CheckInRouteRoute
+    }
+    '/_check-in/checked-in': {
+      id: '/_check-in/checked-in'
+      path: '/checked-in'
+      fullPath: '/checked-in'
+      preLoaderRoute: typeof CheckInCheckedInRouteImport
+      parentRoute: typeof CheckInRouteRoute
+    }
+    '/_check-in/member-purpose': {
+      id: '/_check-in/member-purpose'
+      path: '/member-purpose'
+      fullPath: '/member-purpose'
+      preLoaderRoute: typeof CheckInMemberPurposeRouteImport
+      parentRoute: typeof CheckInRouteRoute
+    }
+    '/_check-in/member-search': {
+      id: '/_check-in/member-search'
+      path: '/member-search'
+      fullPath: '/member-search'
+      preLoaderRoute: typeof CheckInMemberSearchRouteImport
+      parentRoute: typeof CheckInRouteRoute
     }
     '/checkin/expired': {
       id: '/checkin/expired'
@@ -114,9 +271,31 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface CheckInRouteRouteChildren {
+  CheckInAdditionalInfoRoute: typeof CheckInAdditionalInfoRoute
+  CheckInCheckedInRoute: typeof CheckInCheckedInRoute
+  CheckInMemberPurposeRoute: typeof CheckInMemberPurposeRoute
+  CheckInMemberSearchRoute: typeof CheckInMemberSearchRoute
+}
+
+const CheckInRouteRouteChildren: CheckInRouteRouteChildren = {
+  CheckInAdditionalInfoRoute: CheckInAdditionalInfoRoute,
+  CheckInCheckedInRoute: CheckInCheckedInRoute,
+  CheckInMemberPurposeRoute: CheckInMemberPurposeRoute,
+  CheckInMemberSearchRoute: CheckInMemberSearchRoute,
+}
+
+const CheckInRouteRouteWithChildren = CheckInRouteRoute._addFileChildren(
+  CheckInRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  CheckInRouteRoute: CheckInRouteRouteWithChildren,
+  DemoRoute: DemoRoute,
+  MembershipExpiredRoute: MembershipExpiredRoute,
+  WaiverNeededRoute: WaiverNeededRoute,
   CheckinExpiredRoute: CheckinExpiredRoute,
 }
 export const routeTree = rootRouteImport
