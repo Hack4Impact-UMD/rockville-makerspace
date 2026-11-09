@@ -3,16 +3,21 @@ import type { ButtonHTMLAttributes } from "react";
 type Variant = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
 
-// TODO: fill in styles, e.g. bg-dark-cyan hover:bg-light-cyan.
+// Colors from the Figma "Button" component (Primary / Secondary).
+const baseClasses =
+  "inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-[10px] font-ubuntu font-medium shadow-raised";
+
 const variantClasses: Record<Variant, string> = {
-  primary: "",
-  secondary: "",
+  primary:
+    "border border-bright-green bg-dark-green text-white hover:brightness-110",
+  secondary: "border-[1.5px] border-teal bg-white text-teal hover:bg-[#f2f8f9]",
 };
 
+// TODO: sm / md once a design uses them; lg is the kiosk size from Figma.
 const sizeClasses: Record<Size, string> = {
   sm: "",
   md: "",
-  lg: "",
+  lg: "px-8 py-[18px] text-[28px]",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -31,9 +36,8 @@ export function Button({
   return (
     <button
       // oxlint-disable-next-line react/button-has-type
-      // oxlint-disable-next-line react/button-has-type
       type={type}
-      className={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       {...props}
     />
   );

@@ -37,13 +37,15 @@ describe("ExpiredMembership", () => {
     expect(screen.getByRole("alert")).toBeInTheDocument();
     expect(screen.getByText("WAIT, Priya!")).toBeInTheDocument();
     expect(screen.getByText(/membership has lapsed/)).toBeInTheDocument();
-    expect(screen.getByText("Inactive")).toBeInTheDocument();
+    expect(screen.getByText("Inactive membership")).toBeInTheDocument();
   });
 
   it("wires up both buttons", () => {
     const { onGoBack, onCheckInSomeoneElse } = renderScreen();
 
-    fireEvent.click(screen.getByRole("button", { name: "Go back" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Go back and fix check in" }),
+    );
     fireEvent.click(screen.getByRole("button", { name: /someone else/ }));
 
     expect(onGoBack).toHaveBeenCalledOnce();

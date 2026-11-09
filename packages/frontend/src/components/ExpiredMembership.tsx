@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@frontend/components/ui/Button.tsx";
 import { Pill } from "@frontend/components/ui/shapes/Pill.tsx";
-
-// The shared Button and Pill have no styles yet, so this screen supplies its own.
-const buttonBase =
-  "h-12 cursor-pointer rounded-[5px] border-[1.5px] px-6 text-xl font-medium";
+import noEntryIcon from "@frontend/assets/icons/no-entry.svg";
+import patternBg from "@frontend/assets/images/backgrounds/makerspace-pattern-bg.png";
 
 /** Seconds before the screen moves on to the next check-in by itself. */
 export const AUTO_RETURN_SECONDS = 10;
@@ -47,50 +45,33 @@ export function ExpiredMembership({
   }, []);
 
   return (
-    <div className="max-w-[426px]">
-      <div
-        role="alert"
-        className="inline-flex h-[31px] items-center gap-2 rounded-[5px] bg-amber-100 px-3 text-sm text-amber-900"
-      >
-        <CautionIcon />
-        <span>Caution: membership inactive</span>
-      </div>
-
-      <div className="mt-[22px] flex items-center gap-[17px]">
-        <h2 className="text-[28px] font-bold text-[#222]">
-          WAIT, {firstName}!
-        </h2>
-        <NoEntryIcon />
-      </div>
-
-      <p className="mt-4 text-sm text-[#666]">Not checked in quite yet!</p>
-
-      <p className="mt-[13px] rounded-md bg-[#f0f0f0] px-[14px] py-3 text-[13.5px] leading-[16.5px] text-[#222]">
-        Looks like your membership has lapsed. Please see the staff to help you
-        renew before checking in.
-      </p>
-
-      <div className="mt-[26px] flex items-center justify-between border-b border-[#ddd] pb-[13px]">
-        <span className="text-xl font-medium text-[#666]">Membership</span>
-        <Pill colorClass="h-[30px] border border-light-cyan text-sm text-light-cyan">
-          Inactive
+    // The message and the buttons share one grid cell so the message stays
+    // centered on the whole screen while the buttons sit at the bottom.
+    <div
+      className="grid min-h-dvh bg-teal bg-cover bg-center px-[120px] py-10 font-ubuntu leading-[normal]"
+      style={{ backgroundImage: `url(${patternBg})` }}
+    >
+      <div className="flex flex-col items-center gap-[18px] self-center [grid-area:1/1]">
+        <img src={noEntryIcon} alt="" width={56} height={56} />
+        <h1 className="text-[40px] font-bold text-white">WAIT, {firstName}!</h1>
+        <Pill colorClass="border-[1.5px] border-warning bg-warning-bg text-warning shadow-raised">
+          Inactive membership
         </Pill>
+        <p
+          role="alert"
+          className="w-[603px] max-w-full rounded-[10px] bg-warning-bg px-5 py-4 text-xl text-warning"
+        >
+          Looks like your membership has lapsed. Please see the staff to help
+          you renew before checking in.
+        </p>
       </div>
 
-      <div className="mt-24 flex flex-wrap gap-5">
-        <Button
-          variant="secondary"
-          className={`${buttonBase} border-light-cyan bg-white text-light-cyan hover:bg-[#f2fafc]`}
-          onClick={onGoBack}
-        >
-          Go back
+      <div className="flex flex-wrap gap-7 self-end [grid-area:1/1]">
+        <Button variant="secondary" size="lg" onClick={onGoBack}>
+          Go back and fix check in
         </Button>
-        <Button
-          variant="primary"
-          className={`${buttonBase} border-light-cyan bg-light-cyan text-white hover:bg-dark-cyan`}
-          onClick={onCheckInSomeoneElse}
-        >
-          Check In someone else({secondsLeft})
+        <Button variant="primary" size="lg" onClick={onCheckInSomeoneElse}>
+          Done! Let someone else check in({secondsLeft})
         </Button>
       </div>
     </div>
@@ -113,50 +94,4 @@ function playCautionBeep() {
   } catch {
     // Browsers may block audio before any user interaction.
   }
-}
-
-function CautionIcon() {
-  return (
-    <svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true">
-      <path
-        d="M8 1 L15 13 H1 Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-      />
-      <line
-        x1="8"
-        y1="5"
-        x2="8"
-        y2="9"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-      <circle cx="8" cy="11" r="0.7" fill="currentColor" />
-    </svg>
-  );
-}
-
-function NoEntryIcon() {
-  return (
-    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-      <circle
-        cx="17"
-        cy="17"
-        r="15"
-        fill="none"
-        stroke="#a63e08"
-        strokeWidth="3"
-      />
-      <line
-        x1="6.5"
-        y1="6.5"
-        x2="27.5"
-        y2="27.5"
-        stroke="#a63e08"
-        strokeWidth="3"
-      />
-    </svg>
-  );
 }

@@ -1,4 +1,4 @@
-/* Fonts: --font-display gives font-display. TODO: set the real fonts. */
+/* Fonts: --font-ubuntu gives font-ubuntu. Loaded from Google Fonts in index.html. */
 @theme {
-  /* --font-display: "Inter", sans-serif; */
+  --font-ubuntu: "Ubuntu", sans-serif;
 }
