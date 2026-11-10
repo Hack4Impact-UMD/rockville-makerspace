@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@frontend/components/ui/Button.tsx";
 import { Pill } from "@frontend/components/ui/shapes/Pill.tsx";
 import noEntryIcon from "@frontend/assets/icons/no-entry.svg";
-import patternBg from "@frontend/assets/images/backgrounds/makerspace-pattern-bg.png";
 
 /** Seconds before the screen moves on to the next check-in by itself. */
 export const AUTO_RETURN_SECONDS = 10;
@@ -45,10 +44,7 @@ export function ExpiredMembership({
   }, []);
 
   return (
-    <div
-      className="flex min-h-dvh flex-col gap-10 bg-teal bg-cover bg-center px-4 py-10 font-ubuntu leading-[normal] sm:px-10"
-      style={{ backgroundImage: `url(${patternBg})` }}
-    >
+    <div className="flex min-h-dvh flex-col gap-10 px-4 py-10 font-ubuntu leading-[normal] sm:px-10">
       <div className="flex flex-1 flex-col items-center justify-center gap-[18px] text-center">
         <img src={noEntryIcon} alt="" width={56} height={56} />
         <h1 className="text-3xl font-bold break-words text-white sm:text-[40px]">
