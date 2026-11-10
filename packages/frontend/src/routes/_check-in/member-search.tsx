@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { trpc } from "@frontend/lib/trpc.ts";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Background } from "@frontend/assets/images/backgrounds/RockvilleBackground.tsx";
-import { SearchBar } from "@frontend/assets/icons/SearchBar.tsx";
+import searchIcon from "@frontend/assets/icons/search-icon.svg";
 
 export const Route = createFileRoute("/_check-in/member-search")({
   staticData: { backTo: "/" },
@@ -29,10 +28,7 @@ function MemberSearch() {
   );
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Background />
-      </div>
-      <div className="relative z-10">
+      <div>
         <div className="pl-30">
           <h1 className="text-white font-bold text-[40px] pt-10">
             Find your membership
@@ -43,7 +39,7 @@ function MemberSearch() {
             </p>
             <div className="relative">
               <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                <SearchBar />
+                <img src={searchIcon} alt="" />
               </div>
               <input
                 className="w-200 border-1.5 border-2 border-b-black rounded-xl bg-white px-3 py-2.5 pl-10 pr-3 text-[30px] text-black font-medium shadow-lg outline-none placeholder:text-gray-500"
