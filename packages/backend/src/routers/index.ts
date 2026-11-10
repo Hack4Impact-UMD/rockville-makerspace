@@ -7,6 +7,7 @@ import {
   router,
 } from "@backend/trpc/init.ts";
 import { notesRouter } from "@backend/routers/notes.ts";
+import { lookupRouter } from "@backend/routers/lookup.ts";
 
 export const appRouter = router({
   /** No token needed. Shows an arktype input shared through `@repo/common`. */
@@ -16,8 +17,8 @@ export const appRouter = router({
 
   /** Needs a valid token. Returns whatever the middleware resolved. */
   me: protectedProcedure.query(({ ctx }) => ctx.session),
-
   notes: notesRouter,
+  lookup: lookupRouter,
   visits: visitsRouter,
 });
 
