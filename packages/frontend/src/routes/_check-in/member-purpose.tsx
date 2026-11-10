@@ -28,7 +28,7 @@ const PURPOSES = [
     id: "seed-library",
     title: "Seed library",
     icon: <img src={Tree} alt="" />,
-  }
+  },
 ];
 
 function MemberPurpose() {
