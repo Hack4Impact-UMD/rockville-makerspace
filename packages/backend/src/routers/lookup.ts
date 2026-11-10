@@ -9,7 +9,6 @@ import type { PersonSearchResult } from "@repo/common";
 import { publicProcedure, router } from "@backend/trpc/init.ts";
 import type { Query } from "firebase-admin/firestore";
 
-// code written emulating routers/notes.ts
 export const lookupRouter = router({
   search: publicProcedure
     .input(personSearchInput)
@@ -21,7 +20,7 @@ export const lookupRouter = router({
         digits.length === 10 ||
         (digits.length === 11 && digits.startsWith("1"));
 
-      if (/^\d+$/.test(digits) && !isPhoneSearch) {
+      if (/^[\d\s()+-]+$/.test(input.query) && !isPhoneSearch) {
         return [];
       }
 

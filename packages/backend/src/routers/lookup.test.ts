@@ -20,7 +20,7 @@ describe("lookupRouter", () => {
     };
 
     const testCaller = caller(null, mockCtx as unknown as Firestore);
-    const result = await testCaller.lookup.search({ query: "a" });
+    const result = await testCaller.lookup.search({ query: " a " });
 
     expect(result).toEqual([]);
     expect(collectionCalled).toBe(false);

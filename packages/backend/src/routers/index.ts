@@ -17,13 +17,9 @@ export const appRouter = router({
 
   /** Needs a valid token. Returns whatever the middleware resolved. */
   me: protectedProcedure.query(({ ctx }) => ctx.session),
-
   notes: notesRouter,
-<<<<<<< HEAD
   lookup: lookupRouter,
-=======
   visits: visitsRouter,
->>>>>>> a3f2bd489d893019b6ee32bff04df63978d2cb3c
 });
 
 export type AppRouter = typeof appRouter;
