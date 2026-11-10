@@ -1,9 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Box } from "@frontend/components/ui/Box.tsx";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { OptionButton } from "@frontend/components/ui/OptionButton.tsx";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex min-h-dvh flex-col items-center gap-7 px-30 py-10 text-neutral-800">
       <h1 className="text-center text-[40px] leading-tight font-bold">
@@ -11,12 +13,15 @@ function Home() {
       </h1>
 
       <div className="grid w-full max-w-[800px] grid-cols-2 gap-5">
-        <Box title="Member" />
-        <Box title="Not a member" />
+        <OptionButton
+          title="Member"
+          onClick={() => navigate({ to: "/member-search" })}
+        />
+        <OptionButton title="Not a member" />
       </div>
 
       <div className="mt-6 w-full max-w-[800px]">
-        <Box
+        <OptionButton
           variant="outlined"
           title="Check Out"
           description="Everyone, when you’re leaving"

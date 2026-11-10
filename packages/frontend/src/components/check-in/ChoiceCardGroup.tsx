@@ -51,7 +51,8 @@ export function ChoiceCardGroup({
         onScroll={update}
         className="-m-4 overflow-x-auto p-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div className="grid w-max auto-cols-[calc((74cqw-1.5rem)/2)] grid-flow-col grid-rows-2 gap-6">
+        {/* Two columns fill ~74% of the container, so the next column peeks in as a scroll hint; never narrower than a card's 340px minimum. */}
+        <div className="grid w-max auto-cols-[minmax(340px,calc((74cqw-1.5rem)/2))] grid-flow-col grid-rows-2 gap-6">
           {ordered}
         </div>
       </div>

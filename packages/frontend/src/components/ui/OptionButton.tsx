@@ -8,7 +8,7 @@ const variantClasses: Record<Variant, string> = {
     "bg-white outline-1 outline-offset-[-1px] outline-neutral-800 hover:bg-zinc-50",
 };
 
-interface BoxProps extends Omit<
+interface OptionButtonProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   "type"
 > {
@@ -21,14 +21,14 @@ interface BoxProps extends Omit<
 }
 
 /** Large tappable tile for kiosk choices; always a plain button. */
-export function Box({
+export function OptionButton({
   variant = "filled",
   title,
   description,
   icon,
   className = "",
   ...props
-}: BoxProps) {
+}: OptionButtonProps) {
   return (
     <button
       type="button"

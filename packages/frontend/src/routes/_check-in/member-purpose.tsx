@@ -3,9 +3,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Button } from "@frontend/components/ui/Button.tsx";
 import { ChoiceCard } from "@frontend/components/check-in/ChoiceCard.tsx";
 import { ChoiceCardGroup } from "@frontend/components/check-in/ChoiceCardGroup.tsx";
-import HandHeart from "@frontend/assets/icons/hand-heart.svg";
-import Event from "@frontend/assets/icons/event.svg";
-import Tree from "@frontend/assets/icons/tree.svg";
+import handHeartIcon from "@frontend/assets/icons/hand-heart.svg";
+import eventIcon from "@frontend/assets/icons/event.svg";
+import treeIcon from "@frontend/assets/icons/tree.svg";
 import backgroundImage from "@frontend/assets/images/backgrounds/wallpaper-dark-teal.png";
 
 export const Route = createFileRoute("/_check-in/member-purpose")({
@@ -17,17 +17,17 @@ const PURPOSES = [
   {
     id: "volunteering",
     title: "Volunteering",
-    icon: <img src={HandHeart} alt="" />,
+    icon: <img src={handHeartIcon} alt="" />,
   },
   {
     id: "event",
     title: "Event",
-    icon: <img src={Event} alt="" />,
+    icon: <img src={eventIcon} alt="" />,
   },
   {
     id: "seed-library",
     title: "Seed library",
-    icon: <img src={Tree} alt="" />,
+    icon: <img src={treeIcon} alt="" />,
   },
 ];
 
@@ -72,6 +72,8 @@ function MemberPurpose() {
           <Button
             size="lg"
             disabled={selected.length === 0}
+            // TODO: save `selected` (check-in state or search params) - it's lost on navigation.
+            // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
             onClick={() => navigate({ to: "/additional-info" })}
             className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
           >
