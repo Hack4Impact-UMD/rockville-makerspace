@@ -2,10 +2,11 @@ import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Button } from "@frontend/components/ui/Button.tsx";
 import { ChoiceCard } from "@frontend/components/check-in/ChoiceCard.tsx";
+import { ChoiceCardGroup } from "@frontend/components/check-in/ChoiceCardGroup.tsx";
 import HandHeart from "@frontend/assets/icons/hand-heart.svg";
 import Event from "@frontend/assets/icons/event.svg";
 import Tree from "@frontend/assets/icons/tree.svg";
-import backgroundImage from "@frontend/assets/images/backgrounds/general-background-teal.png";
+import backgroundImage from "@frontend/assets/images/backgrounds/wallpaper-dark-teal.png";
 
 export const Route = createFileRoute("/_check-in/member-purpose")({
   staticData: { backTo: "/member-search" },
@@ -27,7 +28,7 @@ const PURPOSES = [
     id: "seed-library",
     title: "Seed library",
     icon: <img src={Tree} alt="" />,
-  },
+  }
 ];
 
 function MemberPurpose() {
@@ -49,11 +50,11 @@ function MemberPurpose() {
         <h1 className="text-[44px] leading-tight font-bold">
           Why are you visiting today?
         </h1>
-        <p className="mt-4 text-[22px]">
+        <p className="mt-6 text-[22px]">
           Tap to select one or more reasons why you&apos;re visiting. You can
           update this later.
         </p>
-        <div className="mt-6 grid max-w-[74%] grid-cols-2 gap-6">
+        <ChoiceCardGroup className="mt-6">
           {PURPOSES.map(({ id, title, icon }) => (
             <ChoiceCard
               key={id}
@@ -65,7 +66,7 @@ function MemberPurpose() {
               className="aspect-[249/112]"
             />
           ))}
-        </div>
+        </ChoiceCardGroup>
         <div className="mt-auto flex justify-end pt-10">
           {/* TODO: remove the className overrides once Button's variant/size styles are filled in. */}
           <Button
