@@ -8,17 +8,15 @@ export function Navbar() {
   });
 
   return (
-    <div className="flex items-center bg-[#FFFFFF] py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]">
-      <div className="flex items-center gap-[16px] text-black">
+    <header className="flex items-center bg-white py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]">
+      <nav className="flex items-center gap-[16px] text-black">
         {backTo && <BackArrow to={backTo} />}
         <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white">
-          <p className="font-inter text-[11px] leading-none font-semibold">
-            RMS
-          </p>
+          <p className="text-[11px] leading-none font-semibold">RMS</p>
         </div>
         <p className="text-[20px] leading-none">Rockville Makerspace</p>
-      </div>
+      </nav>
       <Clock />
-    </div>
+    </header>
   );
 }

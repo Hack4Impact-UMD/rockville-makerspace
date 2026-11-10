@@ -5,9 +5,16 @@ interface ArrowAnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 // The <a> elements behind BackArrow and NextArrow.
-export function BackAnchor({ children, ...props }: ArrowAnchorProps) {
+export function BackAnchor({
+  children,
+  className = "",
+  ...props
+}: ArrowAnchorProps) {
   return (
-    <a {...props} className="inline-flex items-center text-black">
+    <a
+      {...props}
+      className={`inline-flex items-center text-black ${className}`}
+    >
       <svg
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
@@ -28,9 +35,16 @@ export function BackAnchor({ children, ...props }: ArrowAnchorProps) {
 }
 
 // TODO: style the arrows.
-export function NextAnchor({ children, ...props }: ArrowAnchorProps) {
+export function NextAnchor({
+  children,
+  className = "",
+  ...props
+}: ArrowAnchorProps) {
   return (
-    <a {...props} className="inline-flex items-center gap-1 text-sm">
+    <a
+      {...props}
+      className={`inline-flex items-center gap-1 text-sm ${className}`}
+    >
       {children ?? "Next"} →
     </a>
   );

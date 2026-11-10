@@ -40,43 +40,40 @@ function MemberPurpose() {
     );
 
   return (
-    <>
-      {/* TODO: may need to switch min-h-screen to min-h-full once the layout gives its content area a height (flex-1) */}
-      <div className="flex min-h-screen flex-col px-[10%] pt-10 pb-[8%] font-ubuntu text-white">
-        <h1 className="text-[44px] leading-tight font-bold">
-          Why are you visiting today?
-        </h1>
-        <p className="mt-6 text-[22px]">
-          Tap to select one or more reasons why you&apos;re visiting. You can
-          update this later.
-        </p>
-        <ChoiceCardGroup className="mt-6">
-          {PURPOSES.map(({ id, title, icon }) => (
-            <ChoiceCard
-              key={id}
-              title={title}
-              icon={icon}
-              showCheckbox
-              selected={selected.includes(id)}
-              onClick={() => toggle(id)}
-              className="aspect-[249/112]"
-            />
-          ))}
-        </ChoiceCardGroup>
-        <div className="mt-auto flex justify-end pt-10">
-          {/* TODO: remove the className overrides once Button's variant/size styles are filled in. */}
-          <Button
-            size="lg"
-            disabled={selected.length === 0}
-            // TODO: save `selected` (check-in state or search params) - it's lost on navigation.
-            // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
-            onClick={() => navigate({ to: "/additional-info" })}
-            className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
-          >
-            Continue
-          </Button>
-        </div>
+    <div className="flex flex-1 flex-col px-[10%] pt-10 pb-[8%] font-ubuntu text-white">
+      <h1 className="text-[44px] leading-tight font-bold">
+        Why are you visiting today?
+      </h1>
+      <p className="mt-6 text-[22px]">
+        Tap to select one or more reasons why you&apos;re visiting. You can
+        update this later.
+      </p>
+      <ChoiceCardGroup className="mt-6">
+        {PURPOSES.map(({ id, title, icon }) => (
+          <ChoiceCard
+            key={id}
+            title={title}
+            icon={icon}
+            showCheckbox
+            selected={selected.includes(id)}
+            onClick={() => toggle(id)}
+            className="aspect-[249/112]"
+          />
+        ))}
+      </ChoiceCardGroup>
+      <div className="mt-auto flex justify-end pt-10">
+        {/* TODO: remove the className overrides once Button's variant/size styles are filled in. */}
+        <Button
+          size="lg"
+          disabled={selected.length === 0}
+          // TODO: save `selected` (check-in state or search params) - it's lost on navigation.
+          // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
+          onClick={() => navigate({ to: "/additional-info" })}
+          className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
+        >
+          Continue
+        </Button>
       </div>
-    </>
+    </div>
   );
 }

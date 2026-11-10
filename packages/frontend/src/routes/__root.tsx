@@ -28,8 +28,8 @@ function RootLayout() {
     <div
       className={
         background === "wallpaper"
-          ? "min-h-dvh bg-[#0B7285] bg-cover bg-center bg-no-repeat"
-          : "min-h-dvh"
+          ? "flex min-h-dvh flex-col bg-[#0B7285] bg-cover bg-center bg-no-repeat"
+          : "flex min-h-dvh flex-col"
       }
       style={
         background === "wallpaper"
@@ -38,7 +38,10 @@ function RootLayout() {
       }
     >
       <Navbar />
-      <Outlet />
+      {/* Fills the space below the navbar; give a screen's root `flex-1` to fill it too. */}
+      <div className="flex flex-1 flex-col">
+        <Outlet />
+      </div>
     </div>
   );
 }

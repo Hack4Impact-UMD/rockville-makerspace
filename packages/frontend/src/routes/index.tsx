@@ -10,7 +10,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-dvh flex-col items-center gap-7 px-30 py-10 text-neutral-800">
+    <div className="flex flex-1 flex-col items-center gap-7 px-30 py-10 text-neutral-800">
       <h1 className="text-center text-[40px] leading-tight font-bold">
         Welcome to the Makerspace! Let’s get you checked in.
       </h1>
