@@ -6,7 +6,6 @@ import { ChoiceCardGroup } from "@frontend/components/check-in/ChoiceCardGroup.t
 import handHeartIcon from "@frontend/assets/icons/hand-heart.svg";
 import eventIcon from "@frontend/assets/icons/event.svg";
 import treeIcon from "@frontend/assets/icons/tree.svg";
-import backgroundImage from "@frontend/assets/images/backgrounds/wallpaper-dark-teal.png";
 
 export const Route = createFileRoute("/_check-in/member-purpose")({
   staticData: { backTo: "/member-search" },
@@ -43,10 +42,7 @@ function MemberPurpose() {
   return (
     <>
       {/* TODO: may need to switch min-h-screen to min-h-full once the layout gives its content area a height (flex-1) */}
-      <div
-        className="flex min-h-screen flex-col bg-[#0B7285] bg-cover bg-center px-[10%] pt-10 pb-[8%] font-display text-white"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
+      <div className="flex min-h-screen flex-col px-[10%] pt-10 pb-[8%] font-ubuntu text-white">
         <h1 className="text-[44px] leading-tight font-bold">
           Why are you visiting today?
         </h1>
