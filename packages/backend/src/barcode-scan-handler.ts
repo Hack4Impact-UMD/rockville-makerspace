@@ -3,7 +3,7 @@ import type {
   Firestore,
   Transaction,
 } from "firebase-admin/firestore";
-import { COLLECTIONS, visit } from "@repo/common";
+import { COLLECTIONS, normalizeBarcode, visit } from "@repo/common";
 import type { Person, ScanInput } from "@repo/common";
 
 //First entry of DEFAULT_VISIT_TYPES in catalog.ts
@@ -110,7 +110,7 @@ async function checkOut(
 }
 
 export function handleBarcodeScan(db: Firestore, input: ScanInput) {
-  const barcode = input.barcode.trim().toUpperCase(); //TODO: swap for normalizeBarcode() once barcode generation merges
+  const barcode = normalizeBarcode(input.barcode);
 
   return db.runTransaction(async (transaction) => {
     //Find the member with this barcode
