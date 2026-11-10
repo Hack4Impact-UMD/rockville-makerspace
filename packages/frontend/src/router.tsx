@@ -21,5 +21,11 @@ declare module "@tanstack/react-router" {
   interface StaticDataRouteOption {
     /** Where the navbar's back arrow goes; leave unset to hide it. */
     backTo?: LinkProps["to"];
+    /**
+     * Screen background. Defaults to "wallpaper" (the dark teal wallpaper);
+     * "none" turns it off so the screen can set its own. Child routes inherit
+     * from their layout route unless they set their own.
+     */
+    background?: "wallpaper" | "none";
   }
 }

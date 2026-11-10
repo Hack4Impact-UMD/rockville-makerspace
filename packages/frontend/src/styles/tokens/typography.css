@@ -1,4 +1,4 @@
-/* Fonts: --font-display gives font-display. TODO: set the real fonts. */
+/* Font utilities available to individual screens and shared components. */
 @theme {
-  /* --font-display: "Inter", sans-serif; */
+  --font-ubuntu: "Ubuntu", sans-serif;
 }
