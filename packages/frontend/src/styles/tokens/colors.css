@@ -7,4 +7,14 @@
   /* Low contrast on white: use for fills, and dark green for text. */
   --color-neon-green: #27d225;
   --color-dark-green: #247523;
+  /* From the Figma redesign (Brand 01, brand 02 neon, Warning, Warning BG). */
+  --color-teal: #0b7285;
+  --color-bright-green: #05ff00;
+  --color-warning: #eb0000;
+  --color-warning-bg: #ffe4e4;
+}
+
+/* Figma "Shadow Effect": raised buttons and pills (shadow-raised). */
+@theme {
+  --shadow-raised: 0 4px 7px rgb(0 0 0 / 0.25), 0 4px 2px rgb(0 0 0 / 0.25);
 }
