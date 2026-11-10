@@ -1,5 +1,5 @@
 import { randomInt } from "node:crypto";
-import { getFirestore } from "firebase-admin/firestore";
+import type { Firestore } from "firebase-admin/firestore";
 import { COLLECTIONS } from "@repo/common";
 import bwipjs from "bwip-js/node";
 
@@ -15,9 +15,10 @@ export function generateBarcode(): string {
   return barcode;
 }
 
-export function assignBarcode(personId: string): Promise<string> {
-  const db = getFirestore();
-
+export function assignBarcode(
+  db: Firestore,
+  personId: string,
+): Promise<string> {
   return db.runTransaction(async (transaction) => {
     const personRef = db.collection(COLLECTIONS.people).doc(personId);
     const personData = await transaction.get(personRef);
