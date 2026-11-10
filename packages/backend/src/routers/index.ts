@@ -1,3 +1,4 @@
+import { visitsRouter } from "@backend/routers/visits.ts";
 import { helloInput } from "@repo/common";
 import {
   createCallerFactory,
@@ -17,6 +18,7 @@ export const appRouter = router({
   me: protectedProcedure.query(({ ctx }) => ctx.session),
 
   notes: notesRouter,
+  visits: visitsRouter,
 });
 
 export type AppRouter = typeof appRouter;
