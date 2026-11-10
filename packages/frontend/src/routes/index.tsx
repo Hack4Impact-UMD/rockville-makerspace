@@ -1,7 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OptionButton } from "@frontend/components/ui/OptionButton.tsx";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  staticData: { background: "none" },
+  component: Home,
+});
 
 function Home() {
   const navigate = useNavigate();
