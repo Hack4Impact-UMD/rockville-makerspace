@@ -6,7 +6,10 @@ import { Section } from "@frontend/components/Section.tsx";
 import { useAuth } from "@frontend/lib/useAuth.ts";
 import { trpc } from "@frontend/lib/trpc.ts";
 
-export const Route = createFileRoute("/demo")({ component: Demo });
+export const Route = createFileRoute("/demo")({
+  staticData: { background: "none" },
+  component: Demo,
+});
 
 function Demo() {
   const { user } = useAuth();

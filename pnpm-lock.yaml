@@ -50,6 +50,9 @@ importers:
       arktype:
         specifier: ^2.2.3
         version: 2.2.3
+      bwip-js:
+        specifier: ^4.11.4
+        version: 4.11.4
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -94,6 +97,9 @@ importers:
 
   packages/frontend:
     dependencies:
+      '@fontsource/ubuntu':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@repo/common':
         specifier: workspace:*
         version: link:../common
@@ -115,6 +121,9 @@ importers:
       firebase:
         specifier: ^12.18.0
         version: 12.18.0
+      lucide-react:
+        specifier: ^1.70.0
+        version: 1.70.0(@types/react@19.2.18)(react@19.2.8)
       react:
         specifier: ^19.2.8
         version: 19.2.8
@@ -715,6 +724,9 @@ packages:
 
   '@firebase/webchannel-wrapper@1.0.7':
     resolution: {integrity: sha512-phBFwieDLvkZGYN9CE9ZFNEIoBVksprzsnCzQejCmCHtgwCXReeuRpoEGN9C4EbhONztv8NRV1tau6Rb9pONwQ==}
+
+  '@fontsource/ubuntu@5.3.0':
+    resolution: {integrity: sha512-LsjJXgE430QLs8LKfn1RIFbbdGAiZBU1gao8ASa4Z2kGNGh7lMb7Rzx09v3bLLuuK+3XA/JSLgPWTAbLD6r1fg==}
 
   '@google-cloud/cloud-sql-connector@1.11.3':
     resolution: {integrity: sha512-dPnHkcabbH5LAksAQl99SJpC0HuG3YZwjcdcOxdz2QW58vOnGdfQ96d/Hpzl22h3eA03rKG0kMpEplC40xWtTQ==}
@@ -2135,6 +2147,10 @@ packages:
   buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
 
+  bwip-js@4.11.4:
+    resolution: {integrity: sha512-FOXnOQkinxog8FwxdnPB+8k2wRqwPnqXwxX37KcXOtMNW+9CinOkGv9MtIoRC4HX/UyogT0/9lIp6FDm2DcquQ==}
+    hasBin: true
+
   bytes@3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
@@ -3433,6 +3449,15 @@ packages:
   lsofi@2.0.0:
     resolution: {integrity: sha512-XTFlOBHeuXnUGuUQI0kBb4O4oQW7qCV7MRGQja1xNpxgrI/jptlly+/5126RiRold1zgyxY520qOZUZ31V0I2A==}
     engines: {node: '>=20.0.0'}
+
+  lucide-react@1.70.0:
+    resolution: {integrity: sha512-gCTPPN1MlQUBtUgdsUv+0CAUj+X8hifRUiRBw4E5v7lvDIOIpx0EZezdGQMSimS8pKA6esvullJub4GYr0mCHA==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -5373,6 +5398,8 @@ snapshots:
 
   '@firebase/webchannel-wrapper@1.0.7': {}
 
+  '@fontsource/ubuntu@5.3.0': {}
+
   '@google-cloud/cloud-sql-connector@1.11.3':
     dependencies:
       '@googleapis/sqladmin': 37.0.0
@@ -6606,6 +6633,8 @@ snapshots:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
+
+  bwip-js@4.11.4: {}
 
   bytes@3.1.2: {}
 
@@ -8109,6 +8138,12 @@ snapshots:
       lru-cache: 11.5.2
 
   lsofi@2.0.0: {}
+
+  lucide-react@1.70.0(@types/react@19.2.18)(react@19.2.8):
+    dependencies:
+      react: 19.2.8
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   lz-string@1.5.0: {}
 

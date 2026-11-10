@@ -16,3 +16,9 @@ export const note = type({
   createdAt: "number",
 });
 export type Note = typeof note.infer;
+
+export const scanInput = type({
+  barcode: "string >= 1",
+  "visitTypeId?": "string",
+});
+export type ScanInput = typeof scanInput.infer;
