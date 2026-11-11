@@ -2,7 +2,6 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OptionButton } from "@frontend/components/ui/OptionButton.tsx";
 
 export const Route = createFileRoute("/")({
-  staticData: { background: "none" },
   component: Home,
 });
 
@@ -10,7 +9,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-1 flex-col items-center gap-7 px-30 py-10 text-neutral-800">
+    <div className="flex flex-1 flex-col items-center gap-7 px-30 py-10 text-white">
       <h1 className="text-center text-[40px] leading-tight font-bold">
         Welcome to the Makerspace! Let’s get you checked in.
       </h1>
@@ -47,9 +46,7 @@ function Home() {
         />
       </div>
 
-      <p className="text-xl text-neutral-500">
-        Need help? Ask the staff on duty
-      </p>
+      <p className="text-xl text-white/80">Need help? Ask the staff on duty</p>
     </div>
   );
 }
