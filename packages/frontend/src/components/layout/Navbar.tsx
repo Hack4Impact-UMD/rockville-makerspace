@@ -8,13 +8,17 @@ export function Navbar() {
   });
 
   return (
-    <header className="flex items-center bg-white py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]">
-      <nav className="flex items-center gap-[16px] text-black">
+    <header className="flex items-center bg-white py-[23px] px-10 w-full h-[79px] justify-between border-b border-[#565656] sm:py-[28px] sm:px-[48px] sm:h-[96px]">
+      <nav className="flex items-center gap-[13px] text-black sm:gap-[16px]">
         {backTo && <BackArrow to={backTo} />}
-        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white">
-          <p className="text-[11px] leading-none font-semibold">RMS</p>
+        <div className="flex size-[33px] shrink-0 items-center justify-center rounded-md bg-white sm:size-10 sm:rounded-lg">
+          <p className="text-[9px] leading-none font-semibold sm:text-[11px]">
+            RMS
+          </p>
         </div>
-        <p className="text-[20px] leading-none">Rockville Makerspace</p>
+        <p className="text-[11.5px] leading-none font-medium sm:text-[20px] sm:font-normal">
+          Rockville Makerspace
+        </p>
       </nav>
       <Clock />
     </header>

@@ -46,9 +46,13 @@ export function OptionButton({
     >
       {icon}
       <span className="flex flex-col items-center gap-1 leading-none">
-        <span className={`text-[40px] font-bold ${styles.title}`}>{title}</span>
+        <span
+          className={`text-[28px] font-bold sm:text-[40px] ${styles.title}`}
+        >
+          {title}
+        </span>
         {description ? (
-          <span className="text-[28px] font-medium text-[#565656]">
+          <span className="text-lg font-medium text-[#565656] sm:text-[28px]">
             {description}
           </span>
         ) : null}
