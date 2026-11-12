@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import searchIcon from "@frontend/assets/icons/search-icon.svg";
 
-export const Route = createFileRoute("/_check-in/member-search")({
+export const Route = createFileRoute("/_member-check-in/member-search")({
   staticData: { backTo: "/" },
   component: MemberSearch,
 });

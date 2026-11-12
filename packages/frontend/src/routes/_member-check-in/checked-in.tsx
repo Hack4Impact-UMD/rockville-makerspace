@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_check-in/checked-in")({
+export const Route = createFileRoute("/_member-check-in/checked-in")({
   component: CheckedIn,
 });
 

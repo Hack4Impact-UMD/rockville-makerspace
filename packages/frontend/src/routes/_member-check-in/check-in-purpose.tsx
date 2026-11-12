@@ -7,9 +7,9 @@ import handHeartIcon from "@frontend/assets/icons/hand-heart.svg";
 import eventIcon from "@frontend/assets/icons/event.svg";
 import treeIcon from "@frontend/assets/icons/tree.svg";
 
-export const Route = createFileRoute("/_check-in/member-purpose")({
+export const Route = createFileRoute("/_member-check-in/check-in-purpose")({
   staticData: { backTo: "/member-search" },
-  component: MemberPurpose,
+  component: CheckInPurpose,
 });
 
 const PURPOSES = [
@@ -30,7 +30,7 @@ const PURPOSES = [
   },
 ];
 
-function MemberPurpose() {
+function CheckInPurpose() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>([]);
 

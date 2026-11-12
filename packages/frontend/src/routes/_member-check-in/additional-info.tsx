@@ -6,8 +6,8 @@ interface AdditionalInfoSearch {
   allFields?: boolean;
 }
 
-export const Route = createFileRoute("/_check-in/additional-info")({
-  staticData: { backTo: "/member-purpose" },
+export const Route = createFileRoute("/_member-check-in/additional-info")({
+  staticData: { backTo: "/check-in-purpose" },
   validateSearch: (search: Record<string, unknown>): AdditionalInfoSearch => ({
     allFields:
       search.allFields === true || search.allFields === "true"
