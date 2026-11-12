@@ -11,15 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as CheckInRouteRouteImport } from './routes/_check-in/route'
+import { Route as CheckOutRouteRouteImport } from './routes/_check-out/route'
+import { Route as MemberCheckInRouteRouteImport } from './routes/_member-check-in/route'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as MembershipExpiredRouteImport } from './routes/membership-expired'
 import { Route as WaiverNeededRouteImport } from './routes/waiver-needed'
 import { Route as AuthenticatedNotesRouteImport } from './routes/_authenticated/notes'
-import { Route as CheckInAdditionalInfoRouteImport } from './routes/_check-in/additional-info'
-import { Route as CheckInCheckedInRouteImport } from './routes/_check-in/checked-in'
-import { Route as CheckInMemberPurposeRouteImport } from './routes/_check-in/member-purpose'
-import { Route as CheckInMemberSearchRouteImport } from './routes/_check-in/member-search'
+import { Route as CheckOutCheckOutPurposeRouteImport } from './routes/_check-out/check-out-purpose'
+import { Route as MemberCheckInAdditionalInfoRouteImport } from './routes/_member-check-in/additional-info'
+import { Route as MemberCheckInCheckInPurposeRouteImport } from './routes/_member-check-in/check-in-purpose'
+import { Route as MemberCheckInCheckedInRouteImport } from './routes/_member-check-in/checked-in'
+import { Route as MemberCheckInMemberSearchRouteImport } from './routes/_member-check-in/member-search'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,8 +32,12 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CheckInRouteRoute = CheckInRouteRouteImport.update({
-  id: '/_check-in',
+const CheckOutRouteRoute = CheckOutRouteRouteImport.update({
+  id: '/_check-out',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemberCheckInRouteRoute = MemberCheckInRouteRouteImport.update({
+  id: '/_member-check-in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoRoute = DemoRouteImport.update({
@@ -54,26 +60,34 @@ const AuthenticatedNotesRoute = AuthenticatedNotesRouteImport.update({
   path: '/notes',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const CheckInAdditionalInfoRoute = CheckInAdditionalInfoRouteImport.update({
-  id: '/additional-info',
-  path: '/additional-info',
-  getParentRoute: () => CheckInRouteRoute,
+const CheckOutCheckOutPurposeRoute = CheckOutCheckOutPurposeRouteImport.update({
+  id: '/check-out-purpose',
+  path: '/check-out-purpose',
+  getParentRoute: () => CheckOutRouteRoute,
 } as any)
-const CheckInCheckedInRoute = CheckInCheckedInRouteImport.update({
+const MemberCheckInAdditionalInfoRoute =
+  MemberCheckInAdditionalInfoRouteImport.update({
+    id: '/additional-info',
+    path: '/additional-info',
+    getParentRoute: () => MemberCheckInRouteRoute,
+  } as any)
+const MemberCheckInCheckInPurposeRoute =
+  MemberCheckInCheckInPurposeRouteImport.update({
+    id: '/check-in-purpose',
+    path: '/check-in-purpose',
+    getParentRoute: () => MemberCheckInRouteRoute,
+  } as any)
+const MemberCheckInCheckedInRoute = MemberCheckInCheckedInRouteImport.update({
   id: '/checked-in',
   path: '/checked-in',
-  getParentRoute: () => CheckInRouteRoute,
+  getParentRoute: () => MemberCheckInRouteRoute,
 } as any)
-const CheckInMemberPurposeRoute = CheckInMemberPurposeRouteImport.update({
-  id: '/member-purpose',
-  path: '/member-purpose',
-  getParentRoute: () => CheckInRouteRoute,
-} as any)
-const CheckInMemberSearchRoute = CheckInMemberSearchRouteImport.update({
-  id: '/member-search',
-  path: '/member-search',
-  getParentRoute: () => CheckInRouteRoute,
-} as any)
+const MemberCheckInMemberSearchRoute =
+  MemberCheckInMemberSearchRouteImport.update({
+    id: '/member-search',
+    path: '/member-search',
+    getParentRoute: () => MemberCheckInRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -81,10 +95,11 @@ export interface FileRoutesByFullPath {
   '/membership-expired': typeof MembershipExpiredRoute
   '/waiver-needed': typeof WaiverNeededRoute
   '/notes': typeof AuthenticatedNotesRoute
-  '/additional-info': typeof CheckInAdditionalInfoRoute
-  '/checked-in': typeof CheckInCheckedInRoute
-  '/member-purpose': typeof CheckInMemberPurposeRoute
-  '/member-search': typeof CheckInMemberSearchRoute
+  '/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
+  '/additional-info': typeof MemberCheckInAdditionalInfoRoute
+  '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
+  '/checked-in': typeof MemberCheckInCheckedInRoute
+  '/member-search': typeof MemberCheckInMemberSearchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -92,24 +107,27 @@ export interface FileRoutesByTo {
   '/membership-expired': typeof MembershipExpiredRoute
   '/waiver-needed': typeof WaiverNeededRoute
   '/notes': typeof AuthenticatedNotesRoute
-  '/additional-info': typeof CheckInAdditionalInfoRoute
-  '/checked-in': typeof CheckInCheckedInRoute
-  '/member-purpose': typeof CheckInMemberPurposeRoute
-  '/member-search': typeof CheckInMemberSearchRoute
+  '/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
+  '/additional-info': typeof MemberCheckInAdditionalInfoRoute
+  '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
+  '/checked-in': typeof MemberCheckInCheckedInRoute
+  '/member-search': typeof MemberCheckInMemberSearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/_check-in': typeof CheckInRouteRouteWithChildren
+  '/_check-out': typeof CheckOutRouteRouteWithChildren
+  '/_member-check-in': typeof MemberCheckInRouteRouteWithChildren
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
   '/waiver-needed': typeof WaiverNeededRoute
   '/_authenticated/notes': typeof AuthenticatedNotesRoute
-  '/_check-in/additional-info': typeof CheckInAdditionalInfoRoute
-  '/_check-in/checked-in': typeof CheckInCheckedInRoute
-  '/_check-in/member-purpose': typeof CheckInMemberPurposeRoute
-  '/_check-in/member-search': typeof CheckInMemberSearchRoute
+  '/_check-out/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
+  '/_member-check-in/additional-info': typeof MemberCheckInAdditionalInfoRoute
+  '/_member-check-in/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
+  '/_member-check-in/checked-in': typeof MemberCheckInCheckedInRoute
+  '/_member-check-in/member-search': typeof MemberCheckInMemberSearchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,9 +137,10 @@ export interface FileRouteTypes {
     | '/membership-expired'
     | '/waiver-needed'
     | '/notes'
+    | '/check-out-purpose'
     | '/additional-info'
+    | '/check-in-purpose'
     | '/checked-in'
-    | '/member-purpose'
     | '/member-search'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,29 +149,33 @@ export interface FileRouteTypes {
     | '/membership-expired'
     | '/waiver-needed'
     | '/notes'
+    | '/check-out-purpose'
     | '/additional-info'
+    | '/check-in-purpose'
     | '/checked-in'
-    | '/member-purpose'
     | '/member-search'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/_check-in'
+    | '/_check-out'
+    | '/_member-check-in'
     | '/demo'
     | '/membership-expired'
     | '/waiver-needed'
     | '/_authenticated/notes'
-    | '/_check-in/additional-info'
-    | '/_check-in/checked-in'
-    | '/_check-in/member-purpose'
-    | '/_check-in/member-search'
+    | '/_check-out/check-out-purpose'
+    | '/_member-check-in/additional-info'
+    | '/_member-check-in/check-in-purpose'
+    | '/_member-check-in/checked-in'
+    | '/_member-check-in/member-search'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  CheckInRouteRoute: typeof CheckInRouteRouteWithChildren
+  CheckOutRouteRoute: typeof CheckOutRouteRouteWithChildren
+  MemberCheckInRouteRoute: typeof MemberCheckInRouteRouteWithChildren
   DemoRoute: typeof DemoRoute
   MembershipExpiredRoute: typeof MembershipExpiredRoute
   WaiverNeededRoute: typeof WaiverNeededRoute
@@ -174,11 +197,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_check-in': {
-      id: '/_check-in'
+    '/_check-out': {
+      id: '/_check-out'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof CheckInRouteRouteImport
+      preLoaderRoute: typeof CheckOutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_member-check-in': {
+      id: '/_member-check-in'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof MemberCheckInRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo': {
@@ -209,33 +239,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedNotesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_check-in/additional-info': {
-      id: '/_check-in/additional-info'
+    '/_check-out/check-out-purpose': {
+      id: '/_check-out/check-out-purpose'
+      path: '/check-out-purpose'
+      fullPath: '/check-out-purpose'
+      preLoaderRoute: typeof CheckOutCheckOutPurposeRouteImport
+      parentRoute: typeof CheckOutRouteRoute
+    }
+    '/_member-check-in/additional-info': {
+      id: '/_member-check-in/additional-info'
       path: '/additional-info'
       fullPath: '/additional-info'
-      preLoaderRoute: typeof CheckInAdditionalInfoRouteImport
-      parentRoute: typeof CheckInRouteRoute
+      preLoaderRoute: typeof MemberCheckInAdditionalInfoRouteImport
+      parentRoute: typeof MemberCheckInRouteRoute
     }
-    '/_check-in/checked-in': {
-      id: '/_check-in/checked-in'
+    '/_member-check-in/check-in-purpose': {
+      id: '/_member-check-in/check-in-purpose'
+      path: '/check-in-purpose'
+      fullPath: '/check-in-purpose'
+      preLoaderRoute: typeof MemberCheckInCheckInPurposeRouteImport
+      parentRoute: typeof MemberCheckInRouteRoute
+    }
+    '/_member-check-in/checked-in': {
+      id: '/_member-check-in/checked-in'
       path: '/checked-in'
       fullPath: '/checked-in'
-      preLoaderRoute: typeof CheckInCheckedInRouteImport
-      parentRoute: typeof CheckInRouteRoute
+      preLoaderRoute: typeof MemberCheckInCheckedInRouteImport
+      parentRoute: typeof MemberCheckInRouteRoute
     }
-    '/_check-in/member-purpose': {
-      id: '/_check-in/member-purpose'
-      path: '/member-purpose'
-      fullPath: '/member-purpose'
-      preLoaderRoute: typeof CheckInMemberPurposeRouteImport
-      parentRoute: typeof CheckInRouteRoute
-    }
-    '/_check-in/member-search': {
-      id: '/_check-in/member-search'
+    '/_member-check-in/member-search': {
+      id: '/_member-check-in/member-search'
       path: '/member-search'
       fullPath: '/member-search'
-      preLoaderRoute: typeof CheckInMemberSearchRouteImport
-      parentRoute: typeof CheckInRouteRoute
+      preLoaderRoute: typeof MemberCheckInMemberSearchRouteImport
+      parentRoute: typeof MemberCheckInRouteRoute
     }
   }
 }
@@ -251,28 +288,40 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
-interface CheckInRouteRouteChildren {
-  CheckInAdditionalInfoRoute: typeof CheckInAdditionalInfoRoute
-  CheckInCheckedInRoute: typeof CheckInCheckedInRoute
-  CheckInMemberPurposeRoute: typeof CheckInMemberPurposeRoute
-  CheckInMemberSearchRoute: typeof CheckInMemberSearchRoute
+interface CheckOutRouteRouteChildren {
+  CheckOutCheckOutPurposeRoute: typeof CheckOutCheckOutPurposeRoute
 }
 
-const CheckInRouteRouteChildren: CheckInRouteRouteChildren = {
-  CheckInAdditionalInfoRoute: CheckInAdditionalInfoRoute,
-  CheckInCheckedInRoute: CheckInCheckedInRoute,
-  CheckInMemberPurposeRoute: CheckInMemberPurposeRoute,
-  CheckInMemberSearchRoute: CheckInMemberSearchRoute,
+const CheckOutRouteRouteChildren: CheckOutRouteRouteChildren = {
+  CheckOutCheckOutPurposeRoute: CheckOutCheckOutPurposeRoute,
 }
 
-const CheckInRouteRouteWithChildren = CheckInRouteRoute._addFileChildren(
-  CheckInRouteRouteChildren,
+const CheckOutRouteRouteWithChildren = CheckOutRouteRoute._addFileChildren(
+  CheckOutRouteRouteChildren,
 )
+
+interface MemberCheckInRouteRouteChildren {
+  MemberCheckInAdditionalInfoRoute: typeof MemberCheckInAdditionalInfoRoute
+  MemberCheckInCheckInPurposeRoute: typeof MemberCheckInCheckInPurposeRoute
+  MemberCheckInCheckedInRoute: typeof MemberCheckInCheckedInRoute
+  MemberCheckInMemberSearchRoute: typeof MemberCheckInMemberSearchRoute
+}
+
+const MemberCheckInRouteRouteChildren: MemberCheckInRouteRouteChildren = {
+  MemberCheckInAdditionalInfoRoute: MemberCheckInAdditionalInfoRoute,
+  MemberCheckInCheckInPurposeRoute: MemberCheckInCheckInPurposeRoute,
+  MemberCheckInCheckedInRoute: MemberCheckInCheckedInRoute,
+  MemberCheckInMemberSearchRoute: MemberCheckInMemberSearchRoute,
+}
+
+const MemberCheckInRouteRouteWithChildren =
+  MemberCheckInRouteRoute._addFileChildren(MemberCheckInRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  CheckInRouteRoute: CheckInRouteRouteWithChildren,
+  CheckOutRouteRoute: CheckOutRouteRouteWithChildren,
+  MemberCheckInRouteRoute: MemberCheckInRouteRouteWithChildren,
   DemoRoute: DemoRoute,
   MembershipExpiredRoute: MembershipExpiredRoute,
   WaiverNeededRoute: WaiverNeededRoute,
