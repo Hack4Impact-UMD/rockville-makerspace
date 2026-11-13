@@ -23,7 +23,7 @@ export function Clock() {
   return (
     <time
       dateTime={now.toISOString()}
-      className="text-black text-[20px] leading-none"
+      className="text-black text-[11.5px] leading-none font-medium sm:text-[20px] sm:font-normal"
     >
       {dateFormat.format(now)} · {timeFormat.format(now)}
     </time>
