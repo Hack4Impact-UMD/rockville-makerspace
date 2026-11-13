@@ -21,10 +21,7 @@ interface StatusPillProps extends HTMLAttributes<HTMLSpanElement> {
   color?: Color;
 }
 
-const variantClasses: Record<
-  Variant,
-  Record<Color, string>
-> = {
+const variantClasses: Record<Variant, Record<Color, string>> = {
   solid: {
     blue: "bg-dark-cyan text-white border-dark-cyan",
     green: "bg-dark-green text-white border-dark-green",
@@ -53,7 +50,6 @@ const sizeClasses: Record<Size, string> = {
   md: "min-h-9 px-4 py-2 text-sm",
   lg: "min-h-12 px-6 py-3 text-base",
 };
-
 
 export function StatusPill({
   variant = "solid",

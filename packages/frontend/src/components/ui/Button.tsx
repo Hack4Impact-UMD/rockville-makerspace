@@ -1,4 +1,3 @@
-
 /**
  * Example usage:
  * <Button variant="solid" color="blue" size="lg" onClick={handleClick}>
@@ -9,7 +8,6 @@
  *   Cancel
  * </Button>
  */
-
 
 import type { ButtonHTMLAttributes } from "react";
 
@@ -33,7 +31,10 @@ const variantClasses: Record<Variant, string> = {
   dashed: "border-2 border-dashed bg-transparent",
 };
 
-const colorClasses: Record<Color, Record<"solid" | "outline" | "dashed", string>> = {
+const colorClasses: Record<
+  Color,
+  Record<"solid" | "outline" | "dashed", string>
+> = {
   blue: {
     solid: "bg-dark-cyan text-white border-dark-cyan",
     outline: "text-dark-cyan border-dark-cyan",
@@ -102,6 +103,3 @@ export function Button({
     />
   );
 }
-
-
-
