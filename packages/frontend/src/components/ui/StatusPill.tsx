@@ -1,3 +1,13 @@
+/**
+ * Example usage:
+ * <StatusPill variant="solid" color="green" size="md">
+ *   Active
+ * </StatusPill>
+ *
+ * <StatusPill variant="dashed" color="blue" size="lg">
+ *   Pending
+ * </StatusPill>
+ */
 
 import type { HTMLAttributes } from "react";
 

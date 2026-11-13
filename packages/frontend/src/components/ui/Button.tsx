@@ -1,4 +1,16 @@
 
+/**
+ * Example usage:
+ * <Button variant="solid" color="blue" size="lg" onClick={handleClick}>
+ *   Continue
+ * </Button>
+ *
+ * <Button variant="outline" color="red" size="sm">
+ *   Cancel
+ * </Button>
+ */
+
+
 import type { ButtonHTMLAttributes } from "react";
 
 type Variant = "primary" | "secondary" | "solid" | "outline" | "dashed";
@@ -90,3 +102,6 @@ export function Button({
     />
   );
 }
+
+
+
