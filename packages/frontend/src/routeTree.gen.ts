@@ -15,13 +15,17 @@ import { Route as CheckOutRouteRouteImport } from './routes/_check-out/route'
 import { Route as MemberCheckInRouteRouteImport } from './routes/_member-check-in/route'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as MembershipExpiredRouteImport } from './routes/membership-expired'
+import { Route as RequestAccessRouteImport } from './routes/request-access'
+import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as WaiverNeededRouteImport } from './routes/waiver-needed'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedNotesRouteImport } from './routes/_authenticated/notes'
 import { Route as CheckOutCheckOutPurposeRouteImport } from './routes/_check-out/check-out-purpose'
 import { Route as MemberCheckInAdditionalInfoRouteImport } from './routes/_member-check-in/additional-info'
 import { Route as MemberCheckInCheckInPurposeRouteImport } from './routes/_member-check-in/check-in-purpose'
 import { Route as MemberCheckInCheckedInRouteImport } from './routes/_member-check-in/checked-in'
 import { Route as MemberCheckInMemberSearchRouteImport } from './routes/_member-check-in/member-search'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -50,10 +54,25 @@ const MembershipExpiredRoute = MembershipExpiredRouteImport.update({
   path: '/membership-expired',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RequestAccessRoute = RequestAccessRouteImport.update({
+  id: '/request-access',
+  path: '/request-access',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WaiverNeededRoute = WaiverNeededRouteImport.update({
   id: '/waiver-needed',
   path: '/waiver-needed',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedNotesRoute = AuthenticatedNotesRouteImport.update({
   id: '/notes',
@@ -88,23 +107,34 @@ const MemberCheckInMemberSearchRoute =
     path: '/member-search',
     getParentRoute: () => MemberCheckInRouteRoute,
   } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
+  '/request-access': typeof RequestAccessRoute
+  '/sign-in': typeof SignInRoute
   '/waiver-needed': typeof WaiverNeededRoute
+  '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/notes': typeof AuthenticatedNotesRoute
   '/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
   '/additional-info': typeof MemberCheckInAdditionalInfoRoute
   '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/checked-in': typeof MemberCheckInCheckedInRoute
   '/member-search': typeof MemberCheckInMemberSearchRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
+  '/request-access': typeof RequestAccessRoute
+  '/sign-in': typeof SignInRoute
   '/waiver-needed': typeof WaiverNeededRoute
   '/notes': typeof AuthenticatedNotesRoute
   '/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
@@ -112,6 +142,7 @@ export interface FileRoutesByTo {
   '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/checked-in': typeof MemberCheckInCheckedInRoute
   '/member-search': typeof MemberCheckInMemberSearchRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -121,13 +152,17 @@ export interface FileRoutesById {
   '/_member-check-in': typeof MemberCheckInRouteRouteWithChildren
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
+  '/request-access': typeof RequestAccessRoute
+  '/sign-in': typeof SignInRoute
   '/waiver-needed': typeof WaiverNeededRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/notes': typeof AuthenticatedNotesRoute
   '/_check-out/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
   '/_member-check-in/additional-info': typeof MemberCheckInAdditionalInfoRoute
   '/_member-check-in/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/_member-check-in/checked-in': typeof MemberCheckInCheckedInRoute
   '/_member-check-in/member-search': typeof MemberCheckInMemberSearchRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -135,18 +170,24 @@ export interface FileRouteTypes {
     | '/'
     | '/demo'
     | '/membership-expired'
+    | '/request-access'
+    | '/sign-in'
     | '/waiver-needed'
+    | '/admin'
     | '/notes'
     | '/check-out-purpose'
     | '/additional-info'
     | '/check-in-purpose'
     | '/checked-in'
     | '/member-search'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/demo'
     | '/membership-expired'
+    | '/request-access'
+    | '/sign-in'
     | '/waiver-needed'
     | '/notes'
     | '/check-out-purpose'
@@ -154,6 +195,7 @@ export interface FileRouteTypes {
     | '/check-in-purpose'
     | '/checked-in'
     | '/member-search'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -162,13 +204,17 @@ export interface FileRouteTypes {
     | '/_member-check-in'
     | '/demo'
     | '/membership-expired'
+    | '/request-access'
+    | '/sign-in'
     | '/waiver-needed'
+    | '/_authenticated/admin'
     | '/_authenticated/notes'
     | '/_check-out/check-out-purpose'
     | '/_member-check-in/additional-info'
     | '/_member-check-in/check-in-purpose'
     | '/_member-check-in/checked-in'
     | '/_member-check-in/member-search'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -178,6 +224,8 @@ export interface RootRouteChildren {
   MemberCheckInRouteRoute: typeof MemberCheckInRouteRouteWithChildren
   DemoRoute: typeof DemoRoute
   MembershipExpiredRoute: typeof MembershipExpiredRoute
+  RequestAccessRoute: typeof RequestAccessRoute
+  SignInRoute: typeof SignInRoute
   WaiverNeededRoute: typeof WaiverNeededRoute
 }
 
@@ -225,12 +273,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MembershipExpiredRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/request-access': {
+      id: '/request-access'
+      path: '/request-access'
+      fullPath: '/request-access'
+      preLoaderRoute: typeof RequestAccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/waiver-needed': {
       id: '/waiver-needed'
       path: '/waiver-needed'
       fullPath: '/waiver-needed'
       preLoaderRoute: typeof WaiverNeededRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/notes': {
       id: '/_authenticated/notes'
@@ -274,14 +343,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberCheckInMemberSearchRouteImport
       parentRoute: typeof MemberCheckInRouteRoute
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
   AuthenticatedNotesRoute: typeof AuthenticatedNotesRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
   AuthenticatedNotesRoute: AuthenticatedNotesRoute,
 }
 
@@ -324,6 +416,8 @@ const rootRouteChildren: RootRouteChildren = {
   MemberCheckInRouteRoute: MemberCheckInRouteRouteWithChildren,
   DemoRoute: DemoRoute,
   MembershipExpiredRoute: MembershipExpiredRoute,
+  RequestAccessRoute: RequestAccessRoute,
+  SignInRoute: SignInRoute,
   WaiverNeededRoute: WaiverNeededRoute,
 }
 export const routeTree = rootRouteImport
