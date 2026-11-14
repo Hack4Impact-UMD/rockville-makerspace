@@ -21,6 +21,7 @@ import { Route as WaiverNeededRouteImport } from './routes/waiver-needed'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedNotesRouteImport } from './routes/_authenticated/notes'
 import { Route as CheckOutCheckOutPurposeRouteImport } from './routes/_check-out/check-out-purpose'
+import { Route as CheckOutCheckedOutRouteImport } from './routes/_check-out/checked-out'
 import { Route as MemberCheckInAdditionalInfoRouteImport } from './routes/_member-check-in/additional-info'
 import { Route as MemberCheckInCheckInPurposeRouteImport } from './routes/_member-check-in/check-in-purpose'
 import { Route as MemberCheckInCheckedInRouteImport } from './routes/_member-check-in/checked-in'
@@ -84,6 +85,11 @@ const CheckOutCheckOutPurposeRoute = CheckOutCheckOutPurposeRouteImport.update({
   path: '/check-out-purpose',
   getParentRoute: () => CheckOutRouteRoute,
 } as any)
+const CheckOutCheckedOutRoute = CheckOutCheckedOutRouteImport.update({
+  id: '/checked-out',
+  path: '/checked-out',
+  getParentRoute: () => CheckOutRouteRoute,
+} as any)
 const MemberCheckInAdditionalInfoRoute =
   MemberCheckInAdditionalInfoRouteImport.update({
     id: '/additional-info',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/notes': typeof AuthenticatedNotesRoute
   '/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
+  '/checked-out': typeof CheckOutCheckedOutRoute
   '/additional-info': typeof MemberCheckInAdditionalInfoRoute
   '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/checked-in': typeof MemberCheckInCheckedInRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/waiver-needed': typeof WaiverNeededRoute
   '/notes': typeof AuthenticatedNotesRoute
   '/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
+  '/checked-out': typeof CheckOutCheckedOutRoute
   '/additional-info': typeof MemberCheckInAdditionalInfoRoute
   '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/checked-in': typeof MemberCheckInCheckedInRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/notes': typeof AuthenticatedNotesRoute
   '/_check-out/check-out-purpose': typeof CheckOutCheckOutPurposeRoute
+  '/_check-out/checked-out': typeof CheckOutCheckedOutRoute
   '/_member-check-in/additional-info': typeof MemberCheckInAdditionalInfoRoute
   '/_member-check-in/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/_member-check-in/checked-in': typeof MemberCheckInCheckedInRoute
@@ -176,6 +185,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/notes'
     | '/check-out-purpose'
+    | '/checked-out'
     | '/additional-info'
     | '/check-in-purpose'
     | '/checked-in'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/waiver-needed'
     | '/notes'
     | '/check-out-purpose'
+    | '/checked-out'
     | '/additional-info'
     | '/check-in-purpose'
     | '/checked-in'
@@ -210,6 +221,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/notes'
     | '/_check-out/check-out-purpose'
+    | '/_check-out/checked-out'
     | '/_member-check-in/additional-info'
     | '/_member-check-in/check-in-purpose'
     | '/_member-check-in/checked-in'
@@ -315,6 +327,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckOutCheckOutPurposeRouteImport
       parentRoute: typeof CheckOutRouteRoute
     }
+    '/_check-out/checked-out': {
+      id: '/_check-out/checked-out'
+      path: '/checked-out'
+      fullPath: '/checked-out'
+      preLoaderRoute: typeof CheckOutCheckedOutRouteImport
+      parentRoute: typeof CheckOutRouteRoute
+    }
     '/_member-check-in/additional-info': {
       id: '/_member-check-in/additional-info'
       path: '/additional-info'
@@ -382,10 +401,12 @@ const AuthenticatedRouteRouteWithChildren =
 
 interface CheckOutRouteRouteChildren {
   CheckOutCheckOutPurposeRoute: typeof CheckOutCheckOutPurposeRoute
+  CheckOutCheckedOutRoute: typeof CheckOutCheckedOutRoute
 }
 
 const CheckOutRouteRouteChildren: CheckOutRouteRouteChildren = {
   CheckOutCheckOutPurposeRoute: CheckOutCheckOutPurposeRoute,
+  CheckOutCheckedOutRoute: CheckOutCheckedOutRoute,
 }
 
 const CheckOutRouteRouteWithChildren = CheckOutRouteRoute._addFileChildren(
