@@ -16,9 +16,9 @@ function RequestAccess() {
 
         <form className="flex flex-col gap-3">
           <div>
-            <label className="mb-1 block text-[25px] font-medium text-gray-800">
+            <p className="mb-1 block text-[25px] font-medium text-gray-800">
               Full Name <span className="text-red-500">*</span>
-            </label>
+            </p>
             <input
               type="text"
               placeholder="ex. John Jones"
@@ -27,9 +27,9 @@ function RequestAccess() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-[25px] font-medium text-gray-800">
+            <p className="mb-1 block text-[25px] font-medium text-gray-800">
               Email <span className="text-red-500">*</span>
-            </label>
+            </p>
             <input
               type="email"
               placeholder="[@rockvillesciencecenter.org]"
@@ -39,9 +39,9 @@ function RequestAccess() {
           </div>
 
           <div>
-            <label className="mb-1 block text-[25px] font-medium text-gray-800">
+            <p className="mb-1 block text-[25px] font-medium text-gray-800">
               Role <span className="text-red-500">*</span>
-            </label>
+            </p>
             <select
               required
               defaultValue="Staff"
@@ -65,7 +65,6 @@ function RequestAccess() {
           >
             Request Access Link
           </button>
-
         </form>
         <div className="mt-8 text-center">
           <a
@@ -75,9 +74,7 @@ function RequestAccess() {
             Back to Sign In
           </a>
         </div>
-
       </div>
-    
     </div>
-  )
+  );
 }
