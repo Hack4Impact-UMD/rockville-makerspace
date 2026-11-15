@@ -10,6 +10,13 @@ interface AdditionalInfoSearch {
   purposes?: PurposeId[];
 }
 
+// TODO: this is hardcoded for now, but in the future
+//       it should come from the admin side
+const EVENTS = ["Woordshop Workshop"];
+const VOLUNTEER_OPTIONS = ["Member hours"];
+const YES_NO = ["Yes", "No"];
+
+
 export const Route = createFileRoute("/_member-check-in/additional-info")({
   staticData: { backTo: "/check-in-purpose" },
   validateSearch: (search: Record<string, unknown>): AdditionalInfoSearch => ({
