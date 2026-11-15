@@ -69,7 +69,7 @@ function CheckInPurpose() {
           size="lg"
           disabled={selected.length === 0}
 
-          // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
+          // TODO: allFields hardcoded to true for now. only pass it for the non-member flow
           onClick={() => navigate({ 
             to: "/additional-info", 
             search: { purposes: selected, allFields: true } })}

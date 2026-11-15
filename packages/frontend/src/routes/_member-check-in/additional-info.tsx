@@ -2,9 +2,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { Dropdown } from "@frontend/components/ui/Dropdown.tsx";
 import { Button } from "@frontend/components/ui/Button.tsx";
-
-const PURPOSE_IDS = ["volunteering", "event", "seed-library"] as const;
-type PurposeId = (typeof PURPOSE_IDS)[number];
+import { PURPOSE_IDS } from "@frontend/lib/purposes.ts";
+import type { PurposeId } from "@frontend/lib/purposes.ts";
 
 interface AdditionalInfoSearch {
   /** `?allFields=true` shows the extra fields. */
@@ -14,7 +13,7 @@ interface AdditionalInfoSearch {
 
 // TODO: this is hardcoded for now, but in the future
 //       it should come from the admin side
-const EVENTS = ["Woordshop Workshop"];
+const EVENTS = ["Woodshop Workshop"];
 const VOLUNTEER_OPTIONS = ["Member hours"];
 const YES_NO = ["Yes", "No"];
 
