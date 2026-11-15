@@ -17,7 +17,6 @@ const EVENTS = ["Woodshop Workshop"];
 const VOLUNTEER_OPTIONS = ["Member hours"];
 const YES_NO = ["Yes", "No"];
 
-
 export const Route = createFileRoute("/_member-check-in/additional-info")({
   staticData: { backTo: "/check-in-purpose" },
   validateSearch: (search: Record<string, unknown>): AdditionalInfoSearch => ({
@@ -25,17 +24,15 @@ export const Route = createFileRoute("/_member-check-in/additional-info")({
       search.allFields === true || search.allFields === "true"
         ? true
         : undefined,
-    purposes: 
-      Array.isArray(search.purposes)
-        ? search.purposes.filter((p): p is PurposeId => PURPOSE_IDS.includes(p))
-        : undefined,
+    purposes: Array.isArray(search.purposes)
+      ? search.purposes.filter((p): p is PurposeId => PURPOSE_IDS.includes(p))
+      : undefined,
   }),
   component: AdditionalInfo,
 });
 
 /** One screen, two modes: base fields, or all fields. */
 function AdditionalInfo() {
-
   const navigate = useNavigate();
 
   const { allFields, purposes = [] } = Route.useSearch();
@@ -50,7 +47,6 @@ function AdditionalInfo() {
   const [address, setAddress] = useState("");
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const addressRef = useRef<HTMLInputElement>(null);
-
 
   const groupSizeNum = Number(groupSize);
   const groupSizeValid = Number.isInteger(groupSizeNum) && groupSizeNum >= 1;
@@ -71,11 +67,14 @@ function AdditionalInfo() {
 
   return (
     <div className="flex flex-col py-[40px] px-[120px] text-[#FFFFFF] gap-[28px]">
-      <h1 className="text-[40px] font-[700]">Last step! We just need a little bit more information.</h1>
-      <p className="text-[20px] font-[400]">Your answers help us secure grants for the makerspace!</p>
+      <h1 className="text-[40px] font-[700]">
+        Last step! We just need a little bit more information.
+      </h1>
+      <p className="text-[20px] font-[400]">
+        Your answers help us secure grants for the makerspace!
+      </p>
 
       <div className="flex flex-col gap-[10px]">
-
         <label htmlFor="group-size" className="text-[32px] font-[500]">
           How many people total are in your group?
           <span className="text-warning">*</span>
@@ -161,12 +160,10 @@ function AdditionalInfo() {
               Helps us secure funding, we will never send you mail.
             </span>
           </>
-          )}
-
+        )}
       </div>
 
       <div className="mt-auto flex justify-end pt-10">
-
         {/* TODO: replace with the form's submit once there's somewhere to save answers */}
         <Button
           size="lg"
@@ -194,7 +191,8 @@ function AdditionalInfo() {
                 Are you sure?
               </h2>
               <p className="max-w-[604px] text-[28px] leading-none font-medium text-[#565656]">
-                Your address is only used for funding purposes. We&apos;ll never send you mail.
+                Your address is only used for funding purposes. We&apos;ll never
+                send you mail.
               </p>
             </div>
 
@@ -218,8 +216,6 @@ function AdditionalInfo() {
           </div>
         </div>
       )}
-
-
     </div>
   );
 }

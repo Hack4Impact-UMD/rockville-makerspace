@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ReactNode } from "react"; 
+import type { ReactNode } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Button } from "@frontend/components/ui/Button.tsx";
 import { ChoiceCard } from "@frontend/components/check-in/ChoiceCard.tsx";
@@ -70,9 +70,12 @@ function CheckInPurpose() {
           disabled={selected.length === 0}
 
           // TODO: allFields hardcoded to true for now. only pass it for the non-member flow
-          onClick={() => navigate({ 
-            to: "/additional-info", 
-            search: { purposes: selected, allFields: true } })}
+          onClick={() =>
+            navigate({
+              to: "/additional-info",
+              search: { purposes: selected, allFields: true },
+            })
+          }
           className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
         >
           Continue
