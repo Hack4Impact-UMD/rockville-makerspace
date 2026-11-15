@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Button } from "@frontend/components/ui/Button.tsx";
 import { ChoiceCard } from "@frontend/components/check-in/ChoiceCard.tsx";
@@ -6,13 +6,14 @@ import { ChoiceCardGroup } from "@frontend/components/check-in/ChoiceCardGroup.t
 import handHeartIcon from "@frontend/assets/icons/hand-heart.svg";
 import eventIcon from "@frontend/assets/icons/event.svg";
 import treeIcon from "@frontend/assets/icons/tree.svg";
+import type { PurposeId } from "@frontend/lib/purposes.ts";
 
 export const Route = createFileRoute("/_member-check-in/check-in-purpose")({
   staticData: { backTo: "/member-search" },
   component: CheckInPurpose,
 });
 
-const PURPOSES = [
+const PURPOSES: { id: PurposeId; title: string; icon: ReactNode }[] = [
   {
     id: "volunteering",
     title: "Volunteering",
@@ -32,9 +33,9 @@ const PURPOSES = [
 
 function CheckInPurpose() {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<PurposeId[]>([]);
 
-  const toggle = (id: string) =>
+  const toggle = (id: PurposeId) =>
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id],
     );
@@ -66,7 +67,7 @@ function CheckInPurpose() {
         <Button
           size="lg"
           disabled={selected.length === 0}
-          
+
           // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
           onClick={() => navigate({ to: "/additional-info", search: { purposes: selected } })}
           className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
