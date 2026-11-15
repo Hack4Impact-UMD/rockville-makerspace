@@ -1,5 +1,4 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { NextArrow } from "@frontend/components/ui/NextArrow.tsx";
 import { useState, useRef } from "react";
 import { Dropdown } from "@frontend/components/ui/Dropdown.tsx";
 import { Button } from "@frontend/components/ui/Button.tsx";
@@ -196,7 +195,7 @@ function AdditionalInfo() {
                 Are you sure?
               </h2>
               <p className="max-w-[604px] text-[28px] leading-none font-medium text-[#565656]">
-                Your address is only used for funding purposes. We'll never send you mail.
+                Your address is only used for funding purposes. We&apos;ll never send you mail.
               </p>
             </div>
 
