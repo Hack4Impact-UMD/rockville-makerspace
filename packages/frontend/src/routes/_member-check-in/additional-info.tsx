@@ -64,7 +64,7 @@ function AdditionalInfo() {
           placeholder="ex. 2"
           value={groupSize}
           onChange={(e) => setGroupSize(e.target.value)}
-          className="w-full max-w-[600px] rounded-md bg-[#efefef] px-4 py-3 text-[22px] text-teal placeholder:text-teal/70"
+          className="w-[720px] h-[64px] rounded-md bg-[#F0F0F0] px-[20px] py-3 text-[28px] text-[#0B7285] font-[500] placeholder:text-[#0B7285]"
         />
         <span className="text-[20px] font-[400]">Required</span>
 
