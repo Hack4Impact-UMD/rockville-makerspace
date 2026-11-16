@@ -11,7 +11,9 @@
 
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "secondary" | "solid" | "outline" | "dashed";
+type StyleVariant = "solid" | "outline" | "dashed";
+/** `primary` and `secondary` are aliases for `solid` and `outline`. */
+type Variant = StyleVariant | "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
 type Color = "blue" | "green" | "red" | "gray" | "black";
 type Shape = "rounded" | "square";
@@ -23,18 +25,22 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   shape?: Shape;
 }
 
-const variantClasses: Record<Variant, string> = {
-  primary: "border-2 bg-dark-cyan text-white border-dark-cyan",
-  secondary: "border-2 bg-white text-dark-cyan border-dark-cyan",
-  solid: "",
+const aliases: Record<Variant, StyleVariant> = {
+  primary: "solid",
+  secondary: "outline",
+  solid: "solid",
+  outline: "outline",
+  dashed: "dashed",
+};
+
+// Every variant has the same 2px border, so all variants of a size line up.
+const variantClasses: Record<StyleVariant, string> = {
+  solid: "border-2",
   outline: "border-2 bg-transparent",
   dashed: "border-2 border-dashed bg-transparent",
 };
 
-const colorClasses: Record<
-  Color,
-  Record<"solid" | "outline" | "dashed", string>
-> = {
+const colorClasses: Record<Color, Record<StyleVariant, string>> = {
   blue: {
     solid: "bg-dark-cyan text-white border-dark-cyan",
     outline: "text-dark-cyan border-dark-cyan",
@@ -74,7 +80,7 @@ const shapeClasses: Record<Shape, string> = {
 };
 
 export function Button({
-  variant = "primary",
+  variant = "solid",
   size = "md",
   color = "blue",
   shape = "rounded",
@@ -82,17 +88,8 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
-  const styleVariant =
-    variant === "primary"
-      ? "solid"
-      : variant === "secondary"
-        ? "outline"
-        : variant;
-
-  const styles =
-    variant === "primary" || variant === "secondary"
-      ? variantClasses[variant]
-      : `${variantClasses[variant]} ${colorClasses[color][styleVariant]}`;
+  const styleVariant = aliases[variant];
+  const styles = `${variantClasses[styleVariant]} ${colorClasses[color][styleVariant]}`;
 
   return (
     <button
