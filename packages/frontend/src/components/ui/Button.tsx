@@ -1,39 +1,101 @@
+/**
+ * Example usage:
+ * <Button variant="solid" color="blue" size="lg" onClick={handleClick}>
+ *   Continue
+ * </Button>
+ *
+ * <Button variant="outline" color="red" size="sm">
+ *   Cancel
+ * </Button>
+ */
+
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "secondary";
+type StyleVariant = "solid" | "outline" | "dashed";
+/** `primary` and `secondary` are aliases for `solid` and `outline`. */
+type Variant = StyleVariant | "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
-
-// TODO: fill in styles, e.g. bg-dark-cyan hover:bg-light-cyan.
-const variantClasses: Record<Variant, string> = {
-  primary: "",
-  secondary: "",
-};
-
-const sizeClasses: Record<Size, string> = {
-  sm: "",
-  md: "",
-  lg: "",
-};
+type Color = "blue" | "green" | "red" | "gray" | "black";
+type Shape = "rounded" | "square";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
+  color?: Color;
+  shape?: Shape;
 }
 
-/** Reusable button; `type` defaults to "button". */
+const aliases: Record<Variant, StyleVariant> = {
+  primary: "solid",
+  secondary: "outline",
+  solid: "solid",
+  outline: "outline",
+  dashed: "dashed",
+};
+
+// Every variant has the same 2px border, so all variants of a size line up.
+const variantClasses: Record<StyleVariant, string> = {
+  solid: "border-2",
+  outline: "border-2 bg-transparent",
+  dashed: "border-2 border-dashed bg-transparent",
+};
+
+const colorClasses: Record<Color, Record<StyleVariant, string>> = {
+  blue: {
+    solid: "bg-dark-cyan text-white border-dark-cyan",
+    outline: "text-dark-cyan border-dark-cyan",
+    dashed: "text-dark-cyan border-dark-cyan",
+  },
+  green: {
+    solid: "bg-dark-green text-white border-dark-green",
+    outline: "text-dark-green border-dark-green",
+    dashed: "text-dark-green border-dark-green",
+  },
+  red: {
+    solid: "bg-warning text-white border-warning",
+    outline: "bg-warning-bg/40 text-warning border-warning",
+    dashed: "text-warning border-warning",
+  },
+  gray: {
+    solid: "bg-gray-500 text-white border-gray-500",
+    outline: "bg-gray-100 text-gray-600 border-gray-400",
+    dashed: "bg-gray-100 text-gray-600 border-gray-400",
+  },
+  black: {
+    solid: "bg-black text-white border-black",
+    outline: "text-black border-black",
+    dashed: "text-black border-black",
+  },
+};
+
+const sizeClasses: Record<Size, string> = {
+  sm: "min-h-9 px-4 py-2 text-sm",
+  md: "min-h-11 px-6 py-2 text-base",
+  lg: "min-h-14 px-10 py-4 text-xl",
+};
+
+const shapeClasses: Record<Shape, string> = {
+  rounded: "rounded-full",
+  square: "rounded-md",
+};
+
 export function Button({
-  variant = "primary",
+  variant = "solid",
   size = "md",
+  color = "blue",
+  shape = "rounded",
   type = "button",
   className = "",
   ...props
 }: ButtonProps) {
+  const styleVariant = aliases[variant];
+  const styles = `${variantClasses[styleVariant]} ${colorClasses[color][styleVariant]}`;
+
   return (
     <button
       // oxlint-disable-next-line react/button-has-type
-      // oxlint-disable-next-line react/button-has-type
       type={type}
-      className={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${styles} ${sizeClasses[size]} ${shapeClasses[shape]} ${className}`}
       {...props}
     />
   );
