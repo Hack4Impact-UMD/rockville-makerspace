@@ -9,8 +9,19 @@ import treeIcon from "@frontend/assets/icons/tree.svg";
 import peopleIcon from "@frontend/assets/icons/people.svg";
 import flagIcon from "@frontend/assets/icons/flag.svg";
 
+interface CheckOutPurposeSearch {
+  /** Purpose ids chosen at check-in, e.g. `?purposes=volunteering,event`. */
+  purposes?: string[];
+}
+
 export const Route = createFileRoute("/_check-out/check-out-purpose")({
   staticData: { backTo: "/member-search" },
+  validateSearch: (search: Record<string, unknown>): CheckOutPurposeSearch => ({
+    purposes:
+      typeof search.purposes === "string"
+        ? search.purposes.split(",").filter(Boolean)
+        : undefined,
+  }),
   component: CheckOutPurpose,
 });
 
@@ -44,7 +55,12 @@ const PURPOSES = [
 
 function CheckOutPurpose() {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<string[]>([]);
+  const { purposes = [] } = Route.useSearch();
+  // TODO: once check-in saves its selection on the visit, pre-select from the
+  // member's open visit instead of the `purposes` search param.
+  const [selected, setSelected] = useState<string[]>(() =>
+    purposes.filter((id) => PURPOSES.some((purpose) => purpose.id === id)),
+  );
 
   const toggle = (id: string) =>
     setSelected((prev) =>
@@ -57,8 +73,8 @@ function CheckOutPurpose() {
         What did you do today?
       </h1>
       <p className="mt-6 text-[22px]">
-        Tap to select one or more reasons why you&apos;re visiting. You can
-        update this later.
+        Tap to select everything you did during your visit. We&apos;ve selected
+        what you chose when you checked in.
       </p>
       <ChoiceCardGroup className="mt-6">
         {PURPOSES.map(({ id, title, icon }) => (
@@ -80,9 +96,9 @@ function CheckOutPurpose() {
           size="lg"
           shape="square"
           disabled={selected.length === 0}
-          // TODO: save `selected` (check-in state or search params) - it's lost on navigation.
-          // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
-          onClick={() => navigate({ to: "/additional-info" })}
+          // TODO: save `selected` to the visit on check-out.
+          // TODO: go to the checked-out screen once it exists.
+          onClick={() => navigate({ to: "/" })}
           className="cursor-pointer px-12 text-[28px] shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
         >
           Continue
