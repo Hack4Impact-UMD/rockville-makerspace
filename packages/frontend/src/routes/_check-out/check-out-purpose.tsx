@@ -74,14 +74,16 @@ function CheckOutPurpose() {
         ))}
       </ChoiceCardGroup>
       <div className="mt-auto flex justify-end pt-10">
-        {/* TODO: remove the className overrides once Button's variant/size styles are filled in. */}
         <Button
+          variant="solid"
+          color="green"
           size="lg"
+          shape="square"
           disabled={selected.length === 0}
           // TODO: save `selected` (check-in state or search params) - it's lost on navigation.
           // TODO: route to `/additional-info?allFields=true` when the extra fields are needed (e.g. the non-member flow).
           onClick={() => navigate({ to: "/additional-info" })}
-          className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"
+          className="cursor-pointer px-12 text-[28px] shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
         >
           Continue
         </Button>
