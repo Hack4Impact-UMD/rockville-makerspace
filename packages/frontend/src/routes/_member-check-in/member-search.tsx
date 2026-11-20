@@ -27,7 +27,7 @@ function MemberSearch() {
     ),
   );
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden font-ubuntu">
       <div>
         <div className="pl-30">
           <h1 className="text-white font-bold text-[40px] pt-10">
