@@ -9,7 +9,7 @@ function SignIn() {
     <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-8 sm:py-16">
       <section
         aria-labelledby="staff-sign-in-title"
-        className="w-full max-w-[520px] rounded-2xl bg-[#E1EBF9] px-6 py-12 text-center text-slate-950 sm:px-13 sm:py-26"
+        className="w-full max-w-[520px] rounded-2xl bg-white px-6 py-12 text-center text-slate-950 sm:px-13 sm:py-26"
       >
         <div
           aria-hidden="true"
