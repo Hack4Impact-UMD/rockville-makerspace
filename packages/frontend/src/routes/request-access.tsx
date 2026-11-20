@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/request-access")({
   component: RequestAccess,
@@ -14,7 +14,11 @@ function RequestAccess() {
 
         <div className="mx-auto mt-5 mb-6 h-0.75 w-51.25 bg-black" />
 
-        <form className="flex flex-col gap-3">
+        <form
+          className="flex flex-col gap-3"
+          // TODO: send the access request.
+          onSubmit={(event) => event.preventDefault()}
+        >
           <div>
             <p className="mb-1 block text-[25px] font-medium text-gray-800">
               Full Name <span className="text-red-500">*</span>
@@ -49,7 +53,7 @@ function RequestAccess() {
             >
               <option value="Staff">Staff</option>
               <option value="Member">Member</option>
-              <option value="Admin">Non-Member</option>
+              <option value="Non-Member">Non-Member</option>
             </select>
           </div>
 
@@ -67,12 +71,12 @@ function RequestAccess() {
           </button>
         </form>
         <div className="mt-8 text-center">
-          <a
-            href="/sign-in"
+          <Link
+            to="/sign-in"
             className="text-[18px] text-gray-600 underline hover:text-black"
           >
             Back to Sign In
-          </a>
+          </Link>
         </div>
       </div>
     </div>
