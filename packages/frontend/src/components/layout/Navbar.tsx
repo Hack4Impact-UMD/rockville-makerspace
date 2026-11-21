@@ -12,11 +12,12 @@ export function Navbar() {
     select: (state) => state.location.pathname,
   });
 
-  const isPurposePage = pathname === "/check-in-purpose";
+  const isMobileMinimalHeader =
+    pathname === "/check-in-purpose" || pathname === "/no-wifi";
 
   return (
     <header
-      className={`${isPurposePage ? "hidden sm:flex" : "flex"} items-center bg-white py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]`}
+      className={`${isMobileMinimalHeader ? "hidden sm:flex" : "flex"} items-center bg-white py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]`}
     >
       <nav className="flex items-center gap-[16px] text-black">
         {backTo && <BackArrow to={backTo} />}
