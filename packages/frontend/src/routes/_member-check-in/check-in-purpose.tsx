@@ -68,12 +68,11 @@ function CheckInPurpose() {
         <Button
           size="lg"
           disabled={selected.length === 0}
-
-          // TODO: allFields hardcoded to true for now. only pass it for the non-member flow
+          // TODO: pass `allFields: true` in the non-member flow so it shows the address field.
           onClick={() =>
             navigate({
               to: "/additional-info",
-              search: { purposes: selected, allFields: true },
+              search: { purposes: selected },
             })
           }
           className="cursor-pointer rounded-md bg-dark-green px-12 py-4 text-[28px] font-medium text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-neutral-500"

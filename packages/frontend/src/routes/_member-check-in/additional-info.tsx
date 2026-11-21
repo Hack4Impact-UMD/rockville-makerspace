@@ -196,14 +196,18 @@ function AdditionalInfo() {
               </p>
             </div>
 
+            {/* Plain buttons: the shared Button's default solid blue styles
+                override these colors, and it has no white red-outline style. */}
             <div className="flex gap-[28px]">
-              <Button
+              <button
+                type="button"
                 onClick={() => navigate({ to: "/checked-in" })}
-                className="cursor-pointer rounded-[10px] border-[1.5px] border-warning bg-white px-[32px] py-[18px] text-[28px] leading-none font-medium text-warning"
+                className="cursor-pointer rounded-[10px] border-[1.5px] border-warning bg-white px-[32px] py-[18px] text-[28px] leading-none font-medium text-warning shadow-raised"
               >
                 Skip anyway
-              </Button>
-              <Button
+              </button>
+              <button
+                type="button"
                 onClick={() => {
                   setShowSkipConfirm(false);
                   addressRef.current?.focus();
@@ -211,7 +215,7 @@ function AdditionalInfo() {
                 className="cursor-pointer rounded-[10px] border border-bright-green bg-dark-green px-[32px] py-[18px] text-[28px] leading-none font-medium text-white shadow-raised"
               >
                 Add my address
-              </Button>
+              </button>
             </div>
           </div>
         </div>

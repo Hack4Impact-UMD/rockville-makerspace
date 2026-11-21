@@ -22,7 +22,8 @@ export function CheckedOut({
   onDone,
   onEditTime,
 }: {
-  firstName: string;
+  /** Left out until the check-out flow knows who is checking out. */
+  firstName?: string;
   checkedOutAt: Date;
   onGoBack: () => void;
   onDone: () => void;
@@ -48,7 +49,9 @@ export function CheckedOut({
         </svg>
 
         <h1 className="text-6xl leading-tight font-bold">
-          You’re all checked out, {firstName}!
+          {firstName
+            ? `You’re all checked out, ${firstName}!`
+            : "You’re all checked out!"}
         </h1>
 
         <div className="flex items-center gap-4">
@@ -62,7 +65,7 @@ export function CheckedOut({
             type="button"
             onClick={onEditTime}
             aria-label="Edit check-out time"
-            className="flex cursor-pointer flex-col items-start text-xl"
+            className="flex cursor-pointer flex-col items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xl hover:bg-white/30"
           >
             <span aria-hidden="true" className="flex items-end">
               <svg

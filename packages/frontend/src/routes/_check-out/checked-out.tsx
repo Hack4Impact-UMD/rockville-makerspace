@@ -5,8 +5,8 @@ import { CheckedOut } from "@frontend/components/check-out/CheckedOut.tsx";
 export const Route = createFileRoute("/_check-out/checked-out")({
   // TODO: the member's name will come from the check-out flow once the backend
   // is wired up. Until then it is passed as ?name=... for previewing
-  validateSearch: (search: Record<string, unknown>) => ({
-    name: typeof search.name === "string" ? search.name : "Priya",
+  validateSearch: (search: Record<string, unknown>): { name?: string } => ({
+    name: typeof search.name === "string" ? search.name : undefined,
   }),
   component: CheckedOutPage,
 });

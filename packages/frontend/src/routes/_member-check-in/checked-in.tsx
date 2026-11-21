@@ -51,7 +51,7 @@ function CheckedIn() {
           {/* TODO: open the check-in time editor */}
           <button
             type="button"
-            className="flex cursor-pointer flex-col items-start text-xl"
+            className="flex cursor-pointer flex-col items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xl hover:bg-white/30"
           >
             <span aria-hidden="true" className="flex items-end">
               <svg
