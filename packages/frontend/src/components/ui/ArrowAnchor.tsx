@@ -24,7 +24,7 @@ export function BackAnchor({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="size-8"
+        className="size-7"
       >
         <path d="M19 12H5" />
         <path d="m12 19-7-7 7-7" />

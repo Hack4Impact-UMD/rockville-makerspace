@@ -1,5 +1,6 @@
+
 import { BackArrow } from "@frontend/components/ui/BackArrow.tsx";
-import { useMatches } from "@tanstack/react-router";
+import { useMatches, useRouterState } from "@tanstack/react-router";
 import { Clock } from "@frontend/components/layout/Clock.tsx";
 
 export function Navbar() {
@@ -7,8 +8,16 @@ export function Navbar() {
     select: (matches) => matches.at(-1)?.staticData.backTo,
   });
 
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const isPurposePage = pathname === "/check-in-purpose";
+
   return (
-    <header className="flex items-center bg-white py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]">
+    <header
+      className={`${isPurposePage ? "hidden sm:flex" : "flex"} items-center bg-white py-[28px] px-[48px] w-full h-[96px] justify-between border-b border-[#565656]`}
+    >
       <nav className="flex items-center gap-[16px] text-black">
         {backTo && <BackArrow to={backTo} />}
         <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white">

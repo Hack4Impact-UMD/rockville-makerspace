@@ -12,18 +12,19 @@ const timeFormat = new Intl.DateTimeFormat("en-US", {
 });
 
 /** Current date and time, updated every second. */
+
 export function Clock() {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id); // stop the timer when the clock unmounts
+    return () => clearInterval(id);
   }, []);
 
   return (
     <time
       dateTime={now.toISOString()}
-      className="text-black text-[20px] leading-none"
+      className="font-inter text-[16px] leading-none font-semibold text-black"
     >
       {dateFormat.format(now)} · {timeFormat.format(now)}
     </time>

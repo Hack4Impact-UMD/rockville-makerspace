@@ -15,6 +15,7 @@ import { Route as CheckOutRouteRouteImport } from './routes/_check-out/route'
 import { Route as MemberCheckInRouteRouteImport } from './routes/_member-check-in/route'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as MembershipExpiredRouteImport } from './routes/membership-expired'
+import { Route as NoWifiRouteImport } from './routes/no-wifi'
 import { Route as RequestAccessRouteImport } from './routes/request-access'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as WaiverNeededRouteImport } from './routes/waiver-needed'
@@ -52,6 +53,11 @@ const DemoRoute = DemoRouteImport.update({
 const MembershipExpiredRoute = MembershipExpiredRouteImport.update({
   id: '/membership-expired',
   path: '/membership-expired',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoWifiRoute = NoWifiRouteImport.update({
+  id: '/no-wifi',
+  path: '/no-wifi',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RequestAccessRoute = RequestAccessRouteImport.update({
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
+  '/no-wifi': typeof NoWifiRoute
   '/request-access': typeof RequestAccessRoute
   '/sign-in': typeof SignInRoute
   '/waiver-needed': typeof WaiverNeededRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
+  '/no-wifi': typeof NoWifiRoute
   '/request-access': typeof RequestAccessRoute
   '/sign-in': typeof SignInRoute
   '/waiver-needed': typeof WaiverNeededRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/_member-check-in': typeof MemberCheckInRouteRouteWithChildren
   '/demo': typeof DemoRoute
   '/membership-expired': typeof MembershipExpiredRoute
+  '/no-wifi': typeof NoWifiRoute
   '/request-access': typeof RequestAccessRoute
   '/sign-in': typeof SignInRoute
   '/waiver-needed': typeof WaiverNeededRoute
@@ -170,6 +179,7 @@ export interface FileRouteTypes {
     | '/'
     | '/demo'
     | '/membership-expired'
+    | '/no-wifi'
     | '/request-access'
     | '/sign-in'
     | '/waiver-needed'
@@ -186,6 +196,7 @@ export interface FileRouteTypes {
     | '/'
     | '/demo'
     | '/membership-expired'
+    | '/no-wifi'
     | '/request-access'
     | '/sign-in'
     | '/waiver-needed'
@@ -204,6 +215,7 @@ export interface FileRouteTypes {
     | '/_member-check-in'
     | '/demo'
     | '/membership-expired'
+    | '/no-wifi'
     | '/request-access'
     | '/sign-in'
     | '/waiver-needed'
@@ -224,6 +236,7 @@ export interface RootRouteChildren {
   MemberCheckInRouteRoute: typeof MemberCheckInRouteRouteWithChildren
   DemoRoute: typeof DemoRoute
   MembershipExpiredRoute: typeof MembershipExpiredRoute
+  NoWifiRoute: typeof NoWifiRoute
   RequestAccessRoute: typeof RequestAccessRoute
   SignInRoute: typeof SignInRoute
   WaiverNeededRoute: typeof WaiverNeededRoute
@@ -271,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/membership-expired'
       fullPath: '/membership-expired'
       preLoaderRoute: typeof MembershipExpiredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/no-wifi': {
+      id: '/no-wifi'
+      path: '/no-wifi'
+      fullPath: '/no-wifi'
+      preLoaderRoute: typeof NoWifiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/request-access': {
@@ -416,6 +436,7 @@ const rootRouteChildren: RootRouteChildren = {
   MemberCheckInRouteRoute: MemberCheckInRouteRouteWithChildren,
   DemoRoute: DemoRoute,
   MembershipExpiredRoute: MembershipExpiredRoute,
+  NoWifiRoute: NoWifiRoute,
   RequestAccessRoute: RequestAccessRoute,
   SignInRoute: SignInRoute,
   WaiverNeededRoute: WaiverNeededRoute,
