@@ -97,8 +97,7 @@ function CheckOutPurpose() {
           shape="square"
           disabled={selected.length === 0}
           // TODO: save `selected` to the visit on check-out.
-          // TODO: go to the checked-out screen once it exists.
-          onClick={() => navigate({ to: "/" })}
+          onClick={() => navigate({ to: "/checked-out" })}
           className="cursor-pointer px-12 text-[28px] shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
         >
           Continue

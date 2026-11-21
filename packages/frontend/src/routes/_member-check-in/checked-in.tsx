@@ -1,4 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useMemo } from "react";
+import { useCountdown } from "@frontend/lib/useCountdown.ts";
+
+const AUTO_RETURN_SECONDS = 30;
+
+const timeFormat = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+});
 
 export const Route = createFileRoute("/_member-check-in/checked-in")({
   component: CheckedIn,
@@ -6,6 +15,10 @@ export const Route = createFileRoute("/_member-check-in/checked-in")({
 
 function CheckedIn() {
   const navigate = useNavigate();
+  const goHome = () => void navigate({ to: "/" });
+  const secondsLeft = useCountdown(AUTO_RETURN_SECONDS, goHome);
+  // TODO: use the recorded check-in time once check-ins are saved
+  const checkedInAt = useMemo(() => new Date(), []);
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-16 px-28 py-10 text-white">
@@ -29,11 +42,16 @@ function CheckedIn() {
         </h1>
 
         <div className="flex items-center gap-4">
-          <p className="text-3xl font-medium">Checked in at 6:42 PM</p>
+          <p className="text-3xl font-medium">
+            Checked in at{" "}
+            <time dateTime={checkedInAt.toISOString()}>
+              {timeFormat.format(checkedInAt)}
+            </time>
+          </p>
           {/* TODO: open the check-in time editor */}
           <button
             type="button"
-            className="flex cursor-pointer flex-col items-start text-xl"
+            className="flex cursor-pointer flex-col items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xl hover:bg-white/30"
           >
             <span aria-hidden="true" className="flex items-end">
               <svg
@@ -81,10 +99,10 @@ function CheckedIn() {
         </button>
         <button
           type="button"
-          onClick={() => void navigate({ to: "/" })}
+          onClick={goHome}
           className="cursor-pointer rounded-[10px] bg-dark-green px-8 py-4 text-3xl font-medium shadow-[0_4px_4px_rgba(0,0,0,0.25),0_4px_14px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-neon-green hover:brightness-110"
         >
-          Done! Let someone else check in (30)
+          Done! Let someone else check in ({secondsLeft})
         </button>
       </div>
     </div>
