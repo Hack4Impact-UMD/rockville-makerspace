@@ -8,6 +8,7 @@ import {
 } from "@backend/trpc/init.ts";
 import { notesRouter } from "@backend/routers/notes.ts";
 import { lookupRouter } from "@backend/routers/lookup.ts";
+import { myturnRouter } from "@backend/myturn/router.ts";
 
 export const appRouter = router({
   /** No token needed. Shows an arktype input shared through `@repo/common`. */
@@ -20,6 +21,7 @@ export const appRouter = router({
   notes: notesRouter,
   lookup: lookupRouter,
   visits: visitsRouter,
+  myturn: myturnRouter,
 });
 
 export type AppRouter = typeof appRouter;
