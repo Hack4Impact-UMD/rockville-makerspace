@@ -11,7 +11,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-6 px-7 py-8 text-white sm:justify-start sm:px-10">
+    <div className="flex flex-1 flex-col items-center justify-center gap-6 px-7 py-8 text-white sm:px-10">
       <h1 className="text-center text-[28px] leading-none font-bold sm:text-[40px]">
         Welcome to the Makerspace!
         <span className="hidden sm:inline"> Let’s get you checked in.</span>
@@ -22,17 +22,16 @@ function Home() {
           title="Member"
           onClick={() => navigate({ to: "/member-search" })}
         />
-        <OptionButton title="Not a member" />
+        <OptionButton title="Visitor" />
         <OptionButton
           variant="outlined"
           className="sm:col-span-2"
           title="Check Out"
-          description="Everyone, when you’re leaving"
         />
       </div>
 
       <p className="text-sm leading-none font-medium sm:text-xl sm:font-normal">
-        Need help? <span className="underline">Ask the staff on duty</span>
+        Need help? Ask the staff on duty
       </p>
     </div>
   );
