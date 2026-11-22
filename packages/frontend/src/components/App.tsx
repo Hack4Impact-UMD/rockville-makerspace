@@ -8,5 +8,8 @@ import { useAuth } from "@frontend/lib/useAuth.ts";
  */
 export function App() {
   const auth = useAuth();
+  // wait for firebase to restore the signed-in user before routing, so guards
+  // don't redirect a signed-in user who reloaded or typed a url
+  if (auth.isPending) return null;
   return <RouterProvider router={router} context={{ auth }} />;
 }
