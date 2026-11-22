@@ -2,16 +2,21 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 type Variant = "filled" | "outlined";
 
-const variantClasses: Record<Variant, { tile: string; title: string }> = {
+const variantClasses: Record<
+  Variant,
+  { tile: string; title: string; description: string }
+> = {
   // Figma "Brand 01 Light" tile with "Brand 01" text.
   filled: {
     tile: "bg-[#f8feff] hover:bg-white",
     title: "text-teal",
+    description: "text-[#565656]",
   },
-  // Figma "Brand 02 Light" tile with a "Brand 02" border and text.
+  // Check Out: orange border and text on a light warm tile.
   outlined: {
-    tile: "border-2 border-dark-green bg-[#f8fef8] hover:bg-white",
-    title: "text-dark-green",
+    tile: "border-2 border-[#B05200] bg-[#FFF9F5] hover:bg-white",
+    title: "text-[#B05200]",
+    description: "text-[#B05200]",
   },
 };
 
@@ -52,7 +57,9 @@ export function OptionButton({
           {title}
         </span>
         {description ? (
-          <span className="text-lg font-medium text-[#565656] sm:text-[28px]">
+          <span
+            className={`text-lg font-medium sm:text-[28px] ${styles.description}`}
+          >
             {description}
           </span>
         ) : null}
