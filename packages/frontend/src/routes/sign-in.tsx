@@ -9,41 +9,41 @@ function SignIn() {
     <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-8 sm:py-16">
       <section
         aria-labelledby="staff-sign-in-title"
-        className="w-full max-w-[520px] rounded-2xl bg-white px-6 py-12 text-center text-slate-950 sm:px-13 sm:py-26"
+        className="w-full max-w-[460px] rounded-2xl bg-white px-6 py-12 text-center text-slate-950 shadow-md sm:px-14 sm:py-18"
       >
         <div
           aria-hidden="true"
-          className="mx-auto grid size-21 place-items-center rounded-xl bg-dark-orange text-lg font-medium text-white"
+          className="mx-auto grid size-18.5 place-items-center rounded-xl bg-teal text-base font-medium text-white"
         >
           RMS
         </div>
 
         <h1
           id="staff-sign-in-title"
-          className="mt-8 text-3xl font-bold sm:text-[42px] sm:leading-tight"
+          className="mt-7 text-3xl font-bold sm:text-4xl sm:leading-tight"
         >
           Staff Sign In
         </h1>
 
-        <p className="mt-8 rounded-xl border-2 border-dashed border-slate-500 bg-slate-900/5 px-4 py-3.5 text-lg">
-          Not added yet. Ask an admin.
+        <p className="mt-3 text-sm text-slate-600">
+          Use your Rockville Science Center account.
         </p>
 
-        <div className="mt-11 sm:mx-2.5">
+        <div className="mt-10">
           {/* TODO: Enable this control when staff SSO is connected. */}
           <button
             type="button"
             disabled
             aria-describedby="staff-sign-in-domain"
-            className="min-h-[72px] w-full rounded-xl border-2 border-slate-700 px-4 py-3 text-xl font-medium"
+            className="min-h-16 w-full rounded-xl bg-teal px-4 py-3 text-lg text-white"
           >
             Sign in with SSO
           </button>
           <p
             id="staff-sign-in-domain"
-            className="mt-5 text-sm break-all text-slate-600 sm:text-base"
+            className="mt-5 text-sm break-all text-slate-600"
           >
-            @rockvillesciencecenter.org
+            [@rockvillesciencecenter.org]
           </p>
         </div>
       </section>
