@@ -1,64 +1,14 @@
-import type { Firestore } from "firebase-admin/firestore";
 import { beforeEach, describe, expect, it } from "vitest";
 import { COLLECTIONS, person } from "@repo/common";
 import { type } from "arktype";
+import { fakeFirestore } from "@backend/myturn/fakeFirestore.ts";
 import type { ImportedMember } from "@backend/myturn/parseCsv.ts";
 import {
   newMemberRecord,
   saveImportedMembers,
 } from "@backend/myturn/saveMembers.ts";
 
-type Doc = Record<string, unknown>;
-type Ref = { path: string };
-
-// in-memory stand-in for firestore, only what saveImportedMembers uses.
-// ci's unit tests run without the emulator.
-const store = new Map<string, Doc>();
-let batchSizes: number[] = [];
-
-function setByPath(data: Doc, path: string, value: unknown) {
-  const keys = path.split(".");
-  const last = keys.pop() ?? "";
-  let target = data;
-  for (const key of keys) {
-    target[key] = { ...(target[key] as Doc) };
-    target = target[key] as Doc;
-  }
-  target[last] = value;
-}
-
-const db = {
-  collection: (name: string) => ({
-    doc: (id: string): Ref => ({ path: `${name}/${id}` }),
-  }),
-  getAll: (...refs: Ref[]) =>
-    Promise.resolve(refs.map((ref) => ({ ref, exists: store.has(ref.path) }))),
-  // writes are saved only on commit, like a real batch
-  batch: () => {
-    const writes: (() => void)[] = [];
-    return {
-      set: (ref: Ref, data: Doc) => {
-        writes.push(() => store.set(ref.path, structuredClone(data)));
-      },
-      update: (ref: Ref, data: Doc) => {
-        writes.push(() => {
-          const existing = store.get(ref.path);
-          if (existing === undefined) throw new Error(`no doc ${ref.path}`);
-          const updated = structuredClone(existing);
-          for (const [path, value] of Object.entries(data)) {
-            setByPath(updated, path, value);
-          }
-          store.set(ref.path, updated);
-        });
-      },
-      commit: () => {
-        batchSizes.push(writes.length);
-        writes.forEach((write) => write());
-        return Promise.resolve();
-      },
-    };
-  },
-} as unknown as Firestore;
+let { db, store, batchSizes } = fakeFirestore();
 
 const path = (customerId: string) =>
   `${COLLECTIONS.people}/myturn_${customerId}`;
@@ -83,8 +33,7 @@ function member(overrides: Partial<ImportedMember> = {}): ImportedMember {
 }
 
 beforeEach(() => {
-  store.clear();
-  batchSizes = [];
+  ({ db, store, batchSizes } = fakeFirestore());
 });
 
 describe("newMemberRecord", () => {
