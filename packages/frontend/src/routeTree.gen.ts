@@ -27,6 +27,7 @@ import { Route as MemberCheckInCheckInPurposeRouteImport } from './routes/_membe
 import { Route as MemberCheckInCheckedInRouteImport } from './routes/_member-check-in/checked-in'
 import { Route as MemberCheckInMemberSearchRouteImport } from './routes/_member-check-in/member-search'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminBarcodesRouteImport } from './routes/_authenticated/admin/barcodes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +119,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRouteRoute,
 } as any)
+const AuthenticatedAdminBarcodesRoute =
+  AuthenticatedAdminBarcodesRouteImport.update({
+    id: '/barcodes',
+    path: '/barcodes',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/checked-in': typeof MemberCheckInCheckedInRoute
   '/member-search': typeof MemberCheckInMemberSearchRoute
+  '/admin/barcodes': typeof AuthenticatedAdminBarcodesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -150,6 +158,7 @@ export interface FileRoutesByTo {
   '/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/checked-in': typeof MemberCheckInCheckedInRoute
   '/member-search': typeof MemberCheckInMemberSearchRoute
+  '/admin/barcodes': typeof AuthenticatedAdminBarcodesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -171,6 +180,7 @@ export interface FileRoutesById {
   '/_member-check-in/check-in-purpose': typeof MemberCheckInCheckInPurposeRoute
   '/_member-check-in/checked-in': typeof MemberCheckInCheckedInRoute
   '/_member-check-in/member-search': typeof MemberCheckInMemberSearchRoute
+  '/_authenticated/admin/barcodes': typeof AuthenticatedAdminBarcodesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/check-in-purpose'
     | '/checked-in'
     | '/member-search'
+    | '/admin/barcodes'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -206,6 +217,7 @@ export interface FileRouteTypes {
     | '/check-in-purpose'
     | '/checked-in'
     | '/member-search'
+    | '/admin/barcodes'
     | '/admin'
   id:
     | '__root__'
@@ -226,6 +238,7 @@ export interface FileRouteTypes {
     | '/_member-check-in/check-in-purpose'
     | '/_member-check-in/checked-in'
     | '/_member-check-in/member-search'
+    | '/_authenticated/admin/barcodes'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -369,15 +382,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/barcodes': {
+      id: '/_authenticated/admin/barcodes'
+      path: '/barcodes'
+      fullPath: '/admin/barcodes'
+      preLoaderRoute: typeof AuthenticatedAdminBarcodesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminBarcodesRoute: typeof AuthenticatedAdminBarcodesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
+    AuthenticatedAdminBarcodesRoute: AuthenticatedAdminBarcodesRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   }
 
